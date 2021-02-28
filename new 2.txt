@@ -5,3 +5,36 @@ circuit.h(0)
 circuit.cx(0, 1)
 circuit.measure_all()
 circuit.draw('mpl', style={'name': 'iqx'})
+
+
+https://qiskit.org/documentation/tutorials/circuits/3_summary_of_quantum_operations.html
+
+
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
+from qiskit import quantum_info as qi
+
+import math
+desired_vector = [
+    1 / math.sqrt(16) * complex(0, 1),
+    1 / math.sqrt(8) * complex(1, 0),
+    1 / math.sqrt(16) * complex(1, 1),
+    0,
+    0,
+    1 / math.sqrt(8) * complex(1, 2),
+    1 / math.sqrt(16) * complex(1, 0),
+    0]
+
+q = QuantumRegister(3)
+qc = QuantumCircuit(q)
+qc.initialize(desired_vector, [q[0],q[1],q[2]])
+qc.draw()
+
+backend = BasicAer.get_backend('statevector_simulator')
+job = execute(qc, backend)
+qc_state = job.result().get_statevector(qc)
+qc_state
+qi.state_fidelity(desired_vector,qc_state)
+
+
+
+
