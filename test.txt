@@ -1,0 +1,21 @@
+theta=linspace(0,3.5*pi,1000);
+ 
+exp_value=exp(1i*theta);
+ 
+cos_v=real(exp_value);
+sin_v=imag(exp_value);
+ 
+ 
+plot31=plot3(cos_v,theta, zeros(size(cos_v)),zeros(size(sin_v)),theta,sin_v,cos_v,theta,sin_v,'LineWidth',1.5);
+grid on
+set(plot31(1),'Color',[0.6 1 0]);
+set(plot31(2),'Color',[0.4 0.2 1]);
+set(plot31(3),'Color',[1 0 0]);
+legend1=legend('cos(\theta)','sin(\theta)', 'exp(j\theta)');
+set(legend1, 'Position',[0.802222222222222 0.66919435512683 0.055952380952381 0.068238656663094]);
+ 
+xlabel('x'), ylabel('Phase'), zlabel('y');
+view(-122,32)
+hold on
+plot3([min(cos_v) max(cos_v)],[0 0],[0 0],'k',[0 0],[min(theta) max(theta)],[0 0],'k',[0 0],[0 0],[min(sin_v) max(sin_v)],'k','LineWidth',2)
+% https://iamaman.tistory.com/451
