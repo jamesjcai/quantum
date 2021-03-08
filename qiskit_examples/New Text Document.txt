@@ -1,0 +1,6 @@
+https://medium.com/@eliaskountouris9/a-quantum-problem-9096cdb4e49c
+
+https://www.youtube.com/watch?v=sqJIpHYl7oo
+necrosodomblasphemia
+1 year ago
+ @Pete F  The way I see it, the impressive thing is that if you would receive a box such as the one constructed in the video, all you would need to do to discover the secret number that is INSIDE the box is to run the algorithm, i.e. the Hadamard gates and X gate before the box and the Hadamard gates after it.
