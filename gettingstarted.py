@@ -1,3 +1,13 @@
+from sklearn import model_selection, datasets, svm
+iris = datasets.load_iris()
+X=iris.data[0:100]
+Y=iris.target[0:100]
+X_train,X_test,Y_train,Y_test=model_selection.train_test_split(X,Y,test_size=0.33,random_state=42)
+print(Y_train)
+print(X_train[0])
+
+
+
 import numpy as np
 from qiskit import(
   QuantumCircuit,
@@ -9,31 +19,39 @@ from qiskit.visualization import plot_histogram
 simulator = Aer.get_backend('qasm_simulator')
 
 # Create a Quantum Circuit acting on the q register
-circuit = QuantumCircuit(2, 2)
+n=4
 
-# Add a H gate on qubit 0
-circuit.h(0)
+def feature_map(X):
 
-# Add a CX (CNOT) gate on control qubit 0 and target qubit 1
-circuit.cx(0, 1)
+  circuit = QuantumCircuit(n, n)
 
-# Map the quantum measurement to the classical bits
-circuit.measure([0,1], [0,1])
+  for i, x in enumerate(X):
+    circuit.rx(x,i)
+    
+  return circuit
 
-# Execute the circuit on the qasm simulator
-job = execute(circuit, simulator, shots=1000)
+def variational_circuit(qc, theta):
 
-# Grab results from the job
-result = job.result()
+  for i in range(n-1):
+    qc.cnot(i,i+1)
+  qc.cnot(n-1,0)
+  for i in range(n):
+    qc.ry(theta[i],i)
+  return qc
 
-# Returns counts
-counts = result.get_counts(circuit)
-print("\nTotal count for 00 and 11 are:",counts)
+def quantum_nn(X, theta, simulator=True)
+  qc, c = feature_map(X)
+  qc = variational_circuit(qc, np.random.rand(n))
+  qc.measure(0,c)
+  job = execute(qc, simulator, shots=1E4)
+  result = job.result()
+  counts = result.get_counts(qc)
+  #print("\nTotal count for 00 and 11 are:",counts)
+  return counts['1']/1E4
 
-# Draw the circuit
-circuit.draw()
+quantum_nn(X_train[5], np.random.rand(n))
 
-# Plot a histogram
-plot_histogram(counts)
+# https://www.youtube.com/watch?v=5Kr31IFwJiI
+
 
 
