@@ -3,6 +3,8 @@ from qiskit import QuantumCircuit, Aer, IBMQ, QuantumRegister, ClassicalRegister
 from sklearn import model_selection, datasets, svm
 import numpy as np
 import qiskit
+import copy
+import matplotlib.pyplot as plt
 
 iris = datasets.load_iris()
 X=iris.data[0:100]
@@ -42,7 +44,68 @@ def quantum_nn(X, theta, simulator=True):
     counts=result.get_counts(qc)
     return counts['1']/shots
 
+def loss(prediction,target):
+    return (prediction-target)**2
+
+def gradient(X,Y,theta):
+    delta = 0.01
+    grad =[]
+    for i in range(len(theta)):
+        dtheta=copy.copy(theta)
+        dtheta[i] +=delta
+        pred1=quantum_nn(X,dtheta)
+        pred2=quantum_nn(X,theta)
+        grad.append((loss(pred1,Y)-loss(pred2,Y))/delta)
+    return np.array(grad)
+
+def accuracy(X,Y,theta):
+    counter=0
+    for X_i,Y_i in zip(X,Y):
+        prediction = quantum_nn(X_i,theta)
+        if prediction<0.5 and Y_i==0:
+            counter +=1
+        elif prediction>=0.5 and Y_i ==1:
+            counter +=1
+    return counter/len(Y)
+
+        
+
+eta = 0.05
+loss_list=[]
+theta=np.ones(N)
+
+print('Epoch \t Loss \t Training Accuracy')
+
+for i in range(20):
+    loss_tmp =[]
+    for X_i, Y_i in zip(X_train,Y_train):
+        prediction=quantum_nn(X_i, theta)
+        loss_tmp.append(loss(prediction,Y_i))
+        theta = theta -eta * gradient(X_i, Y_i, theta)
+
+    loss_list.append(np.mean(loss_tmp))
+    acc = accuracy(X_train,Y_train,theta)
+
+    print(f'{i} \t {loss_list[-1]:.3f} \t {acc:.3f}')
+
+
+
+
 quantum_nn(X_train[5], np.random.rand(N))
+
+plt.plot(loss_list)
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.show()
+
+
+accuracy(X_test,Y_test,theta)
+
+
+clf = svm.SVC()
+clf.fit(X_train,Y_train)
+print(clf.prediction(X_test))
+print(Y_test)
 
 
 
