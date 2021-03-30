@@ -1,14 +1,15 @@
 % ref: https://www.youtube.com/watch?v=qysCuvPdX6E
 X=[0 1; 1 0]; Z=[1 0; 0 -1]; Y=1i*X*Z;
 H=(1/sqrt(2))*(X+Z);
-H=(X+Z)./vecnorm(X+Z);
-
+%H=(X+Z)./vecnorm(X+Z);
 
 ket0=[1;0];
+%ket0=[0.5;-0.25i];
+%ket0=ket0./norm(ket0);
 ket1=[0;1];
 
 plotBlochShphere
-plotBlochVect(H*ket1)
+plotBlochVect(H*ket0)
 
 function rho = ket2dm(ket)
 % convert ket to a density matrix rho
