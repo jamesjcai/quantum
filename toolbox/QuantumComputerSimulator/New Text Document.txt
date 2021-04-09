@@ -1,0 +1,38 @@
+The introduced code implements a simulator of a universal quantum computer. The simulator allows user to simulate and debug quantum algorithms before actual deployment on a quantum computer.
+
+The simulator is based on David Deutsch mathematical model of a universal quantum computer, so matrix multiplication and tensor (Kronecker) products are only advanced mathematical operations used in simulation. The result of simulation is a probability distribution of a quantum computer states.
+
+A quantum algorithm fed into the quantum computer is actually a string matrix. Rows of the matrix represents q-bits and columns steps of the algorithm. Each cell of the matrix contains a quantum gate.
+
+The simulator implements these single q-bit quantum gates: I, X, Y, Z, H, S, T, RX, RY, RZ, U1, U2, U3 and EXP (matrix exponential). Inverse of S and T, denoted DS and DT, are available too. Gates RX, RY, RZ, U1, U2 and U3 need parameters (see function getOperator to grasp implementation of the gates). The simulator allows to use one q-bit controlled version of any above discussed gate. For example, controlled X, which is actually CNOT gate. Toffoli gate (or CCNOT) is implemented as well (denoted TF). It is also possible to use swap gate (denoted SWP).
+
+A main function of the simulator is quantumComputer. This function has three parameters: a quantum algorithm, a list of measured q-bits and initial state. The first parameter contains matrix with quantum algorithm itself, second parameter is a row vector containing indexes of measured q-bits (index start with 1) and initial state contains column vector with the quantum computer state at the beginning of the algorithm run. The function returns three outputs – final quantum state, probabilities of measuring basis states (in computational basis) and a matrix representing processed quantum algorithm.
+
+Functions initializeRegisters and initializeRegistersInt serve as generator of an initial state. The first function transforms list of single q-bits, each in state q = a|0> + b|1>, to their tensor product and as a result prepares initial state of the quantum computer. Second function transforms integer to the quantum computer initial state.
+
+Function getOperator implements all above described single q-bit gates- User can add its own single q-bit quantum gate to this function.
+Functions getControlledOperator and algorithmPreprocess are auxiliary functions and user can ignore them as they are called only inside the function quantumComputer.
+
+All above discussed functions have help to better understand how to use them. Type for example “help quantumComputer”.
+To better understand how to write quantum algorithm for the simulator, files with extension *.mat contain these algorithms:
+
+a) bellState.mat – Preparation of Bell state (|00> + |11>)/sqrt(2). After loading the *.mat file, type this statement: “quantumComputer(qAlgorithm)”.
+
+b) bitSwap.mat – Swap of two q-bits content.
+
+c) Toffoli.mat – Implementation of Toffoli gate with CNOT and single q-bit gates.
+
+d) grover_4bit_1iter.mat – First iteration of the Grover algorithm searching for solution of logical equation a*b*c*not(d) = 1, whete a,b,c and d are logical variables and * denotes AND operation. After loading the *.mat file, type this statement:
+“quantumComputer(qAlgorithm, [1 2 4 5])”.
+
+e) Files grover_4bit_2iter.mat and grover_4bit_3iter.mat contain two and three (i.e. optimal number) iterations of the Grover algorithm, respectively to demonstrate how increasing number of iteration increase probability of solution of a*b*c*not(d) = 1. After loading the *.mat file, type this statement: “quantumComputer(qAlgorithm, [1 2 4 5])”.
+
+f) statePrep.mat – Preparation of 3-qbit register with below shown distribution of states. The algorithm is based on article “Transformation of quantum states using uniformly controlled rotations” by Mottonen, Vartiainen, Bergholm and Salomaa. After loading the *.mat file, type this statement: “quantumComputer(qAlgorithm)”.
+a. p(|000>) = 3 %
+b. p(|001>) = 5 %
+c. p(|010>) = 7 %
+d. p(|011>) = 10 %
+e. p(|100>) = 13 %
+f. p(|101>) = 15 %
+g. p(|110>) = 17 %
+h. p(|111>) = 30 %

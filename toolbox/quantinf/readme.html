@@ -1,0 +1,659 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-03-19 Fri 14:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Toby 'qubit' Cubitt - Matlab code</title>
+<meta name="author" content="Toby Cubitt" />
+<meta name="generator" content="Org Mode" />
+<link href="https://fonts.googleapis.com/css?family=Cardo:400,400italic,700&subset=latin,greek" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="black-keys.css" type="text/css"/>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="header"></div>
+<input type="checkbox" id="navbar-toggle">
+<label for="navbar-toggle" id="navbar-toggle-label" onclick></label>
+
+<div id="page">
+<div id="sidebar">
+<div class="related">
+<h1>Related posts</h1>
+<ul>
+  <li><a href="authord.html">LaTeX authord package</a></li>
+  <li><a href="undo-tree.html">Emacs undo-tree package</a></li>
+  <li><a href="auto-overlays.html">Emacs auto-overlays package</a></li>
+  <li><a href="LaTeX_quantum.html">LaTeX quantum package</a></li>
+  <li><a href="predictive.html">Emacs predictive completion package</a></li>
+  <li><a href="cleveref.html">LaTeX cleveref package</a></li>
+  <li><a href="emacs_data-structures.html">Emacs data structure packages</a></li>
+  <li><a href="completion-UI.html">Emacs Completion-UI package</a></li>
+  <li><a href="emacs_misc.html">Miscelaneous Emacs packages</a></li>
+</ul>
+</div>
+<div class="recent">
+<h1>Recent posts</h1>
+<ul>
+  <li><a href="Evil_cursor_model.html">Evil cursor model</a></li>
+  <li><a href="Descent_into_Evil.html">Descent into Evil</a></li>
+  <li><a href="EYS_floating_and_sinking.html">Early-Years Science: Floating and Sinking</a></li>
+  <li><a href="EYS_cress-growing.html">Early-Years Science: Cress-Growing</a></li>
+  <li><a href="Lost_undo-tree_history.html">Lost or corrupted undo-tree history</a></li>
+  <li><a href="How_to_include_material_after_the_letter_in_newlfm.html">How to include material after the letter in newlfm</a></li>
+  <li><a href="Ten_commandments_of_being_scooped.html">Toby's ten commandments of being scooped</a></li>
+  <li><a href="paternity_leave_reflections.html">Paternity leave: reflections</a></li>
+  <li><a href="Truths_about_proofs_and_groups.html">Truths about proofs and groups</a></li>
+  <li><a href="Dear_Diane.html">Dear Diane</a></li>
+</ul>
+</div>
+<div class="recent-comments">
+<h1>Recent comments</h1>
+<ul>
+  <li>Toby Cubitt in <a href="undo-tree.html">undo-tree</a></li>
+  <li>Han in <a href="undo-tree.html">undo-tree</a></li>
+  <li>JP in <a href="matlab.html">matlab</a></li>
+  <li>Toby Cubitt in <a href="Truths_about_proofs_and_groups.html">Truths_about_proofs_and_groups</a></li>
+  <li>Goutam kr Biswas in <a href="matlab.html">matlab</a></li>
+  <li>deusmax in <a href="tmda.html">tmda</a></li>
+  <li>Toby Cubitt in <a href="tmda.html">tmda</a></li>
+  <li>Shaohua Pan in <a href="matlab.html">matlab</a></li>
+  <li>Max in <a href="undo-tree.html">undo-tree</a></li>
+  <li>Andrew in <a href="Lost_undo-tree_history.html">Lost_undo-tree_history</a></li>
+</ul>
+</div>
+</div>  <!-- sidebar -->
+
+<div id="outline-container-org23f8de0" class="outline-1 content">
+<h1 id="org23f8de0">Matlab code</h1>
+<div class="outline-text-1" id="text-org23f8de0">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">28 December 2013</span></span>
+I've collected here various functions, routines, and other bits of Matlab, Octave and Mathematica code organized by topic, that might save someone, somewhere, from re-inventing the wheel. Some of them are so simple it would probably be quicker to re-code them than find this page, but since you're here anyway&#x2026;
+</p>
+
+<p>
+Comments within the code should be enough to figure out what they do and how to use them (try <code>help &lt;function&gt;</code> from within Matlab or Octave). No guarantee they work as advertised, but I use them myself so I do correct bugs when I come across them. The Matlab code <i>should</i> run under both <a href="http://www.gnu.org/software/octave/">Octave</a> and Matlab.
+</p>
+
+<p>
+All the Matlab, Octave and Mathematica code linked from this page is released under the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GPL license, version 2</a> or later.
+</p>
+
+<p>
+If you make use of this code in your research, consider including a citation to this web page in any resulting publication. Not only is it fair to give credit when you've made use of other people's work, it is important for scientific reproducability to document any code you used to help produce your results. Also, if you found this code useful, then others probably will too! Citing this page helps others find it.
+</p>
+
+<p>
+I leave it to your judgement whether you feel your results made sufficient use of this code to warrant a citation; I do not insist on it. But consider whether using this code has been as helpful to your research as the least useful paper you are citing. (Typically, this sets the bar very low!). If so, you should probably include a citation to this web page.
+</p>
+</div>
+
+
+<div id="outline-container-orgeab382a" class="outline-2">
+<h2 id="orgeab382a">Quantum Information Package</h2>
+<div class="outline-text-2" id="text-orgeab382a">
+<p>
+For convenience, all the Matlab/Octave functions related to quantum mechanics and quantum information theory are also available in a single bundle, as well as individually (below).
+</p>
+
+<ul class="org-ul">
+<li><a href="matlab/quantinf.tar.gz">Quantinf package</a> (version 0.5.1)</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgee48876" class="outline-2">
+<h2 id="orgee48876">Linear algebra</h2>
+<div class="outline-text-2" id="text-orgee48876">
+<dl class="org-dl">
+<dt>Partial trace: \(TrX(\rho \text{ or } \psi, sys, dim)\)</dt>
+ 
+ <dd>Partial trace over the subsystem(s) specified by (vector) \(sys\) of a density matrix \(\rho\) or state vector \(\psi\), where the subsystem dimensions are given by vector \(dim\).
+<ul class="org-ul">
+<li><a href="matlab/TrX.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Partial transpose: \(Tx(\rho,sys,dim)\)</dt><dd>Partial trace of a density matrix \(\rho\) with respect to the subsystem specified by \(sys\), where the subsystem dimensions are given by vector \(dim\).  
+<ul class="org-ul">
+<li><a href="matlab/Tx.m">Matlab/Octave</a></li>
+</ul></dd>
+</dl>
+
+
+<dl class="org-dl">
+<dt>Bi/tripartite partial trace:
+ \(TrX23(\rho,sys,dim)\), <br> Bi/tripartite partial transpose: \(Tx23(\rho,sys,dim)\)</dt><dd>Partial trace or transpose of a bipartite or tripartite density matrix \(\rho\) with respect to subsystem \(sys\), where the subsystems have dimensions specified by vector \(dim\).
+<ul class="org-ul">
+<li><a href="matlab/TrX23.m">Matlab/Octave</a></li>
+<li><a href="matlab/partial.m">Mathematica</a></li>
+</ul></dd>
+
+<dt>Purification: \(purification(\rho)\)</dt><dd></dd>
+</dl>
+<p>
+Return a minimal purification of density matrix \(\rho\).
+</p>
+<ul class="org-ul">
+<li><a href="matlab/purification.m">Matlab/Octave</a></li>
+</ul>
+<dl class="org-dl">
+<dt>Normalise: \(normalise(\rho \text{ or } \psi)\)</dt><dd>Normalise the state vector \(\psi\) or density matrix \(\rho\).
+<ul class="org-ul">
+<li><a href="matlab/normalise.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Exchange subsystems: \(sysexchange(\rho \text{ or } \psi, sys, dim)\)</dt><dd>Exchange the order of two subsystems (specified in vector \(sys\)) of a multi-partite density matrix \(\rho\) or state vector \(\psi\), where \(dim\) specifies the dimensions of all the subsystems.
+<ul class="org-ul">
+<li><a href="matlab/sysexchange.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Permute subsystems: \(syspermute(\rho \text{ or } \psi, perm, dim)\)</dt><dd>Permuate the order of the subsystems in a multi-partite density matrix \(\rho\) or state vector \(\psi\) according to permutation \(perm\). \(dim\) specifies the dimensions of all the subsystems.
+<ul class="org-ul">
+<li><a href="matlab/syspermute.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Tensor product: \(tensor(A,B,C,...)\)</dt><dd>Tensor product of arguments (generalises built-in matlab function \(kron\)). Each argument must either be a matrix, or a cell array containing a matrix and an integer. In the latter case, the integer specifies the repeat count for the matrix, e.g. \(tensor(A,\{B,3\},C) = tensor(A,B,B,B,C)\).
+<ul class="org-ul">
+<li><a href="matlab/tensor.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Schmidt decomposition: \(schmidt(\psi,dim)\)</dt><dd>Schmidt decomposition of a pure state \(\psi\), whose subsystem dimensions are given by the vector \(dim\).
+<ul class="org-ul">
+<li><a href="matlab/schmidt.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Hilbert-Schmidt representation: \(pauli(M)\), \(unpauli(R)\)</dt><dd>Transform a 4x4 matrix \(M\) to the Hilbert-Schmidt representation in the Pauli basis, or vice-versa, i.e. \(M = \frac14 R_{ij}\sigma_i\sigma_j\).
+<ul class="org-ul">
+<li><a href="matlab/pauli.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Spin-flip: \(flip(\rho \text{ or } \psi)\)</dt><dd>Implements Wooters' spin-flip operation: \(\sigma_y\otimes\sigma_y\rho^*\sigma_y\otimes\sigma_y\) for density matrices, or \(\sigma_y\otimes\sigma_y\psi^*\) for state vectors.
+<ul class="org-ul">
+<li><a href="matlab/flip.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Commutator: \(comm(A,B)\)</dt><dd>Shall I insult your intelligence more than I have done already by including this on the page? Oh alright then, if you insist. This function calculates the birthday of Julius Caesar in light-years.
+<ul class="org-ul">
+<li><a href="matlab/comm.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Matrix absolute value: \(absm(M)\)</dt><dd>Absolute value of matrix \(M\), defined as \(|M| = \sqrt{M^\dagger{}M}\).
+<ul class="org-ul">
+<li><a href="matlab/absm.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Integer division: \(div(a,b)\)</dt><dd>The integer part of \(a/b\). Not really linear algebra at all, but there you go.
+<ul class="org-ul">
+<li><a href="matlab/div.m">Matlab/Octave</a></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-org5659c11" class="outline-2">
+<h2 id="org5659c11">Channels (CP maps)</h2>
+<div class="outline-text-2" id="text-org5659c11">
+<dl class="org-dl">
+<dt>Apply channel: \(applychan(E, \rho \text{ or } \psi, rep, dim)\)</dt><dd>Apply channel \(E\) to density matrix \(\rho\) or state vector \(\psi\). The representation used for \(E\) is specified by \(rep\) (Choi-Jamiolkowski state, purification thereof, linear operator, Kraus decomposition, Steinspring isometry, or Pauli representation of a qubit channel). The input and output dimensions of the channel are given by the vector \(dim\). \(rep\) and \(dim\) can often be guessed automatically, so these don't necessarily need to be supplied.
+<ul class="org-ul">
+<li><a href="matlab/applychan.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Convert channel representation: \(chanconv(E,from,to,dim)\)</dt><dd>Convert between different representations of a channel \(E\). The representation used for \(E\) is specified by \(from\), and the desired output representation by \(to\) (see \(applychan\), above, for the possible representations). The input and output dimensions of the channel are given by the vector \(dim\). The \(from\) and \(dim\) arguments can often be guessed automatically, so they don't necessarily need to be supplied.
+<ul class="org-ul">
+<li><a href="matlab/chanconv.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>R representation: \(chan2R(\rho)\)</dt><dd>Convert the Choi-Jamiolkowski state representation \(\rho\) of a qubit channel to the corresponding R representation (Pauli-basis representation).
+<ul class="org-ul">
+<li><a href="matlab/chan2R.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Minimum output Rényi entropy: \(chanMinRenyi(p,E,rep,dim)\)</dt><dd>Numerically estimate the minimum output Rényi \(p\)-entropy of channel \(E\) specified in representation \(rep\) and with input and output dimensions given by the vector \(dim\). Though who cares now? The minimum output entropy conjecture for \(p=1\)= is <a href="http://arxiv.org/abs/0809.3972">already dead</a>! It's still open for \( 0 < p < 1 \) though&#x2026;
+<ul class="org-ul">
+<li><a href="matlab/chanMinRenyi.m">Matlab/Octave</a></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-org24daff2" class="outline-2">
+<h2 id="org24daff2">Generating Random Things</h2>
+<div class="outline-text-2" id="text-org24daff2">
+<dl class="org-dl">
+<dt>Random state vector: \(randPsi(dim)\)</dt><dd>Generate a random state vector of dimension \(dim\), uniformly distributed according to the Haar measure.
+<ul class="org-ul">
+<li><a href="matlab/randPsi.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Random density matrix: \(randRho(dim)\)</dt><dd>Generate a random density matrix of dimension \(dim\), distributed according to some measure or other (don't worry, it's dense in the set of all density matrices, which is all you really care about, right?).
+<ul class="org-ul">
+<li><a href="matlab/randRho.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Random channel: \(randChan(dimA,[dimB,[dimE]],rep)\)</dt><dd>Generate a random quantum channel with specified input, and (optionally) output and environment dimensions, distributed according some other measure or other (still dense &#x2013; were you still worrying?).
+<ul class="org-ul">
+<li><a href="matlab/randChan.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Random unitary: \(randU(d)\)</dt><dd>Generate a random \(d \times d\) unitary matrix, uniformly distributed according to the Haar measure.
+<ul class="org-ul">
+<li><a href="matlab/randU.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Random isometry: \(randV(n,m)\)</dt><dd>Generate a random \(n \times m\) isometry.
+<ul class="org-ul">
+<li><a href="matlab/randV.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Random Hermitian matrix: \(randH(dim)\)</dt><dd>Generate a random \(d \times d\) Hermitian matrix.
+<ul class="org-ul">
+<li><a href="matlab/randH.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Random matrix: \(randM(dim)\)</dt><dd>Generate a random \(d \times d\) complex matrix.
+<ul class="org-ul">
+<li><a href="matlab/randM.m">Matlab/Octave</a></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-orgdb58dd8" class="outline-2">
+<h2 id="orgdb58dd8">Entanglement and Entropy</h2>
+<div class="outline-text-2" id="text-orgdb58dd8">
+<dl class="org-dl">
+<dt>von Neumann entropy: \(VNent(\rho)\)</dt><dd>Von Neumann entropy of density matrix \(\rho\). Note: this is <i>not</i> the entropy of entanglement; for that, use \(VNent(TrX(\rho,2,[dim1,dim2]))\) or \(entE\) (below).
+<ul class="org-ul">
+<li><a href="matlab/VNent.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Rényi p-entropy: \(renyi(p,\rho)\)</dt><dd>Rényi p-entropy of density matrix \(\rho\).
+<ul class="org-ul">
+<li><a href="matlab/renyi.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Entropy of entanglement: \(entE(\rho,dim)\)</dt><dd>Entropy of entanglement of a bipartite density matrix \(\rho\) with subsystem dimensions given by the vector \(dim\). The entropy of entanglement is defined as the von-Neumann entropy of the reduced density matrix of either subsystem.  For bipartite pure states, all entanglement measures are asymptotically equivalent to it.
+<ul class="org-ul">
+<li><a href="matlab/entE.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Negativity: \(negativity(\rho,dim)\)</dt><dd>Negativity of a bipartite density matrix \(\rho\) with subsystem dimensions given by the vector \(dim\). Defined as the absolute value of twice the sum of the negative eigenvalues of \(\rho\), or 0 if all eigenvalues are positive.
+<ul class="org-ul">
+<li><a href="matlab/negativity.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Concurrence: \(concurrence(\rho \text{ or } \psi)\)</dt><dd>Concurrence of a 2-qubit state vector \(\psi\) or density matrix \(\rho\), defined as \(a*d-b*c\) where \(\psi=(a,b,c,d)\), or \(max[0,\lambda_1-\lambda_2-\lambda_3-\lambda_4]\) where \(\rho flip(\rho^*)\) has eigenvalues \(\lambda\).
+<ul class="org-ul">
+<li><a href="matlab/concurrence.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Maximum entangled fraction: \(maxEfrac(\rho)\)</dt><dd>Maximum entangled (or singlet) fraction of a 2-qubit density matrix \(\rho\), defined as the maximum over all maximally entangled states \(|\phi>\) of \(<\phi|\rho|\phi>\).
+<ul class="org-ul">
+<li><a href="matlab/maxEfrac.m">Matlab/Octave</a></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+
+
+<div id="outline-container-org16f7c30" class="outline-2">
+<h2 id="org16f7c30">Utility</h2>
+<div class="outline-text-2" id="text-org16f7c30">
+<dl class="org-dl">
+<dt>Populate some useful variables: \(usefulvars\)</dt><dd>Populate some useful variables for playing around with quantum information. Read the contents of the file to see what goodies you get.
+<ul class="org-ul">
+<li><a href="matlab/usefulvars.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Kill tinies: \(killtiny(X,[tolerance])\)</dt><dd>Set any elements of \(M\) that have very small magnitude to exactly zero. \(M\) can be a matrix or scalar. Real and imaginary parts are set to zero independently if necessary. Useful for tidying up matrices before displaying them.
+<ul class="org-ul">
+<li><a href="matlab/killtiny.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Pretty-print matrices: \(pprintm(M,[rowlabels,[collabels]]\)</dt><dd>Pretty-print a matrix in a format that makes it easier to visually parse the structure of the matrix. Rows and columns can be labelled, and labellings suitable for state vectors or density matrices of arbitrary combinations of qudits can be generated automatically.
+<ul class="org-ul">
+<li><a href="matlab/pprintm.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Pack/unpack variables into/from vector: \(vpack(s,...,v,...,M,...)\),  \(vunpack(V,s,...,v,...,A,...)\)</dt><dd><p>
+Pack or unpack scalars \(s\), vectors \(v\), and matrices \(M\) into a single vector, or unpack them again. Arguments to \(vpack\) can be in any order. Argument \(V\) to \(vunpack\) is the vector to be unpacked, the other arguments are used to determine the dimensions of the objects to unpack into (contents of these arguments are ignored).
+</p>
+
+<p>
+Intended for use with optimization routines which (used to?) require all optimization parameters to be passed in a single vector.
+</p>
+<ul class="org-ul">
+<li><a href="matlab/vpack.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Solve dual (LMI) form SDP: \(runLMI(c,F,G,A,b)\)</dt><dd><p>
+Solve the following semi-definite program, given in dual (linear matrix inequality) form:
+</p>
+\begin{align*}
+&\min_x c^T x\\
+&\text{subject to }\\
+&\quad \Sigma_i F^(k)_i \geq G^(k)\\
+&\quad Ax = b.
+\end{align*}
+<p>
+Requires a working <a href="http://sedumi.ie.lehigh.edu/">SeDuMi</a> installation. (SeDuMi can be made to <a href="http://sedumi.ie.lehigh.edu/index.php?option=com_docman&amp;task=doc_details&amp;gid=30&amp;Itemid=76">work under Octave</a>, too.)
+</p>
+<ul class="org-ul">
+<li><a href="matlab/runLMI.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Solve primal form SDP: \(runSDP(C,A,b)\)</dt><dd><p>
+Solve the following semi-definite program, given in primal form:
+</p>
+\begin{align*}
+&\min_X \mathrm{trace}(CX)\\
+&\text{subject to }\\
+&\quad X \geq 0\\
+&\quad \mathrm{tr}(A^{(i)}X) = b^{(i)}.
+\end{align*}
+<p>
+Requires a working <a href="http://sedumi.ie.lehigh.edu/">SeDuMi</a> installation. (SeDuMi can be made to <a href="http://sedumi.ie.lehigh.edu/index.php?option=com_docman&amp;task=doc_details&amp;gid=30&amp;Itemid=76">work under Octave</a>, too.)
+</p>
+<ul class="org-ul">
+<li><a href="matlab/runSDP.m">Matlab/Octave</a></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-orgb0202de" class="outline-2">
+<h2 id="orgb0202de">Plotting</h2>
+<div class="outline-text-2" id="text-orgb0202de">
+<dl class="org-dl">
+<dt>`Smart' plotting: \(smartplot(...)\)</dt><dd><p>
+Read the internal documentation for the low-down on this one (try <code>help smartplot</code> at a Matlab/Octave prompt). Essentially, \(smartplot\) returns points sampled from a user-supplied function, which can then be plotted with the built-in plotting functions.
+</p>
+
+<p>
+The `smart' part is that a higher density of points is sampled around interesting regions (e.g. turning points). Interesting regions are identified by a user-defined function, so can be anything.
+</p>
+<ul class="org-ul">
+<li><a href="matlab/smartplot.m">Matlab/Octave</a></li>
+</ul></dd>
+
+<dt>Interesting regions: \(maxima\), \(turn\_pt\)</dt><dd>Functions to detect a couple of types of interesting regions, for use with \(smartplot\).
+<ul class="org-ul">
+<li>Matlab/Octave: <a href="matlab/turn_pt.m">turn_pt</a> , <a href="matlab/maxima.m">maxima</a></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb1eb36f" class="outline-1 comments">
+<h1 id="orgb1eb36f">Comments</h1>
+<div class="outline-text-1" id="text-orgb1eb36f">
+</div>
+<div id="outline-container-org3ad95a2" class="outline-2">
+<h2 id="org3ad95a2">Christina</h2>
+<div class="outline-text-2" id="text-org3ad95a2">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">13 October 2016</span></span>
+I am using your partial trace function TrX, but it doesn't work when the dimensions of some systems are one. It works when the system to be traced out is <span class="underline">before</span> the one dimensional system, but if it is <span class="underline">after</span>
+it doesn't work.
+</p>
+
+<p>
+In particular, there is an error in the fourth line of the following:
+</p>
+<div class="org-src-container">
+<pre class="src src-matlab">n = length(dim);
+rdim = dim(end:-1:1);
+keep = [1:n];
+keep(sys) = [];
+dimtrace = prod(dim(sys));
+dimkeep = length(p)/dimtrace;
+</pre>
+</div>
+<p>
+This is because the ones from "dim" were removed but the index of "sys" was not updated.
+I tried to fix this, simply by updating the "sys". However, although it seems to work with a few simple examples, when I run my code (a large complicated one with endless uses of your TrX function) it doesn't
+work properly sometimes.
+</p>
+
+<p>
+So I thought to ask you to fix it, rather than me fixing it, just to be on the safe side.
+</p>
+
+<p>
+Looking forward to hear from you, and thanks for all the functions ;)
+</p>
+
+<p>
+Christina
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgf558d90" class="outline-2">
+<h2 id="orgf558d90">Noora Ismail</h2>
+<div class="outline-text-2" id="text-orgf558d90">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">14 April 2017</span></span>
+This is amazing summary that I have never seen before !!!
+</p>
+
+<p>
+My prayers to You!
+</p>
+
+<p>
+Thanks a lot.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgf8d783c" class="outline-2">
+<h2 id="orgf8d783c">Eastlife</h2>
+<div class="outline-text-2" id="text-orgf8d783c">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">22 August 2017</span></span>
+Wow, Its fantastic bro. Thanks a lot! especially for the entanglement entropy and concurrence.
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-org0dcc7d9" class="outline-2">
+<h2 id="org0dcc7d9">Roberto</h2>
+<div class="outline-text-2" id="text-org0dcc7d9">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">24 November 2017</span></span>
+Comment: the new version of randRho requires randH but the file says 'nothing'.
+</p>
+
+<p>
+Question: in randRho you multiply randH by 10, which in principle has no effect. Is this for numerical stability?
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgfbf5fd3" class="outline-2">
+<h2 id="orgfbf5fd3">sreelatha</h2>
+<div class="outline-text-2" id="text-orgfbf5fd3">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">18 December 2018</span></span>
+Sir,
+This is incredible .I wanted to write a code in matlab to read a color image in quantum bits .i was searching for information .I could nt get all information  but what ever I have right now is good.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2998931" class="outline-2">
+<h2 id="org2998931">sfchien</h2>
+<div class="outline-text-2" id="text-org2998931">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp"> 3 June 2019</span></span>
+Hi 
+</p>
+
+<p>
+Have you developed similar codes in Python?
+</p>
+
+<p>
+Thanks
+</p>
+
+<p>
+Chien
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgef08712" class="outline-2">
+<h2 id="orgef08712"><a href="http://www.dr-qubit.org">Toby Cubitt</a></h2>
+<div class="outline-text-2" id="text-orgef08712">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">17 June 2019</span></span>
+@sfchien #6:
+</p>
+
+<p>
+No, I haven't coded Python versions of these. I'm extremely unlikely ever to do so, as I don't use Python for quantum information calculations myself (or do much numerics at all, for that matter).
+</p>
+
+<p>
+For someone with decent knowledge of Numpy/Scipy and (more importantly!) a good understanding of the quantum information theory behind them, it shouldn't be too big a task. Want to take it on?
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgfb70c60" class="outline-2">
+<h2 id="orgfb70c60">Shaohua Pan</h2>
+<div class="outline-text-2" id="text-orgfb70c60">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">25 April 2020</span></span>
+It is a great help to us !! Thanks a lot
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgf540d7b" class="outline-2">
+<h2 id="orgf540d7b">Goutam kr Biswas</h2>
+<div class="outline-text-2" id="text-orgf540d7b">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">17 July 2020</span></span>
+Excellently useful. Thanks to the creator.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org234b0b5" class="outline-2">
+<h2 id="org234b0b5">JP</h2>
+<div class="outline-text-2" id="text-org234b0b5">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">16 October 2020</span></span>
+This is wonderful stuff. I'll be using this in my research, porting this over to python probably. I'll let you know if I build up enough functionality that it would be useful to share!
+</p>
+</div>
+</div>
+</div>
+
+<div class="comment-form"><h2>Leave a comment</h2>
+<p>
+  All comments are moderated. Clicking submit will open your email client and
+  let you send your comment by email.
+  By submitting your comment you agree to license the content under a <a rel="license"
+  href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+  Attribution-ShareAlike 4.0 International License</a>.
+</p><form action="mailto:toby-blog@dr-qubit.org" enctype="text/plain" method="post">
+<label>
+  <input type="text" name="name" autocorrect="off" required/>
+  Name (required)
+</label><br>
+<label>
+  <input type="email" name="email" autocorrect="off" autocapitalize="off" spellcheck="false" required/>
+  Email (required, but not published)
+</label><br>
+<label>
+  <input type="text" name="website" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+  Web site (optional)
+</label><br>
+<input type="text" name="url" autocomplete="off"/>
+<textarea name="comment" require></textarea>
+<input type="hidden" name="page" value="matlab.org" readonly />
+<input type="submit" value="Submit Comment"/>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</form></div>
+</div>  <!-- page -->
+<div id="footer"></div>
+
+<div id="navbar">
+<div class="keys">
+  <div class="keysL"></div>
+
+  <a class="keys0 keys-up" href="tags/all.html">
+    <span>All</span>
+  </a>
+
+  <a class="keys1 keys-down" href="tags/computing.html">
+    <span>computing</span>
+  </a>
+
+  <a class="keys2 keys-down" href="tags/computing-code.html">
+    <span>code</span>
+  </a>
+
+  <a class="keys3 keys-down" href="matlab.html">
+    <span>matlab</span>
+  </a>
+
+  <div class="keys4 keys-up"></div>
+  <div class="keys5 keys-up"></div>
+  <div class="keys6 keys-up"></div>
+  <div class="keys7 keys-up"></div>
+  <div class="keys8 keys-up"></div>
+  <div class="keys9 keys-up"></div>
+  <div class="keysR"></div>
+</div>  <!-- keys -->
+</div>  <!-- navbar -->
+</body>
+</html>
