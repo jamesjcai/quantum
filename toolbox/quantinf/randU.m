@@ -27,7 +27,7 @@ function U = randU(n)
 %% MA 02110-1301, USA.
 
 
-X = (randn(n) + i*randn(n))/sqrt(2);
+X = (randn(n) + 1i*randn(n))/sqrt(2);
 [Q,R] = qr(X);
 R = diag(diag(R)./abs(diag(R)));
 U = Q*R;

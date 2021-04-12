@@ -26,5 +26,5 @@ function H = randH(n)
 %% MA 02110-1301, USA.
 
 
-H = 2*(randn(n) + i*randn(n)) - (1+i);
+H = 2*(randn(n) + 1i*randn(n)) - (1+1i);
 H = H + H';

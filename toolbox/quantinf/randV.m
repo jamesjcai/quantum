@@ -26,7 +26,7 @@ function V = randV(n,m)
 %% MA 02110-1301, USA.
 
 
-X = (randn(n,m) + i*randn(n,m))/sqrt(2);
+X = (randn(n,m) + 1i*randn(n,m))/sqrt(2);
 [Q,R] = qr(X,0);
 R = diag(diag(R)./abs(diag(R)));
 V = Q*R;

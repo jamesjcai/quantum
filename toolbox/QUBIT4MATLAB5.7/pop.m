@@ -1,7 +1,7 @@
 % pop   Gives the p operator as a matrix. Usage: p(d),
 %       where d is the size of the matrix.
 
-function m=pop(d);
+function m=pop(d)
 
 m=zeros(d,d);
 for n=1:d-1

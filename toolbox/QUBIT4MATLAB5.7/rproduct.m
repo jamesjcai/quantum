@@ -23,11 +23,11 @@ end %if
 
 % Before normalization, elements of the vector 
 % have a normal distribution.
-p=randn(d,1)+i*randn(d,1);
+p=randn(d,1)+1i*randn(d,1);
 p=p/sqrt(p'*p);
 
 for n=1:N-1
-   s=randn(d,1)+i*randn(d,1);
+   s=randn(d,1)+1i*randn(d,1);
    s=s/sqrt(s'*s);
    p=kron(p,s);
 end %for

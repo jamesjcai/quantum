@@ -29,4 +29,4 @@ function M = randM(varargin)
 %% MA 02110-1301, USA.
 
 
-M = 2*(rand(varargin{:}) + i*rand(varargin{:})) - (1+i);
+M = 2*(rand(varargin{:}) + 1i*rand(varargin{:})) - (1+1i);

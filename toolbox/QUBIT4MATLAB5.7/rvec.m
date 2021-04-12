@@ -25,5 +25,5 @@ end %if
 % Generate a random unit vector with complex elements.
 % Before normalization, elements of the vector 
 % have a normal distribution.
-s=randn(d^N,1)+i*randn(d^N,1);
+s=randn(d^N,1)+1i*randn(d^N,1);
 s=s/sqrt(s'*s);

@@ -35,4 +35,4 @@ classdef QuantumGate
 end
 
 
-
+% https://hackage.haskell.org/package/qchas-1.0.0/src/src/Gates.hs
