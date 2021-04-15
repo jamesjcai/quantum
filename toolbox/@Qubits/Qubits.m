@@ -1,7 +1,7 @@
 classdef Qubits
    properties (Constant)      
-      qOne=[1;0]
-      qZero=[0;1]
+      qZero=[1;0]
+      qOne=[0;1]
       qPlus=[1/sqrt(2);1/sqrt(2)]
       qMinus=[1/sqrt(2);-1/sqrt(2)]
       % https://www.mathworks.com/help/matlab/matlab_oop/properties-with-constant-values.html

@@ -1,4 +1,4 @@
-classdef QuantumGate
+classdef Gates
    properties
       theta
    end
@@ -9,7 +9,7 @@ classdef QuantumGate
 
    methods
    % output = myFunc(obj,arg1,arg2)
-   function obj = QuantumGate(theta)
+   function obj = Gates(theta)
         if nargin<1, theta=0; end
         obj.theta=theta;
     end
