@@ -1,7 +1,6 @@
 classdef Gates
    properties
-      mat  double
-      name string 
+      mat
    end
    
    properties (Dependent)
@@ -10,12 +9,10 @@ classdef Gates
 
    methods
    % output = myFunc(obj,arg1,arg2)
-   function obj = Gates(mat,name)
-        if nargin<1, mat=eye(2); end
-        if nargin<1, name="I"; end
-        obj.mat=mat;
-        obj.name=name;
-   end
+   function obj = Gates(mat)
+        if nargin<1, mat=0; end
+        obj.vec=obj.;
+    end
 
    function m = get.X(~), m = [0 1; 1 0]; end
    function m = get.Y(~), m = [0 -1i; 1i 0]; end

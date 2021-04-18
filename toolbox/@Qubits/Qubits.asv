@@ -19,12 +19,7 @@ classdef Qubits
 %       qZero, qOne, qPlus, qMinus
 %    end 
 % 
-methods
-   function obj = Qubits(vec)       
-       if nargin<1, vec=[1;0]; end        
-       obj.vec=vec;
-    end
-        
+%    methods
 %    % output = myFunc(obj,arg1,arg2)
 %    function obj = QubitGenerator(alpha,beta)
 %        if nargin<2, beta=0; end
@@ -38,7 +33,7 @@ methods
 %    function k = get.qOne(~), k = [0;1]; end
 %    function k = get.qPlus(~), k = [1/sqrt(2);1/sqrt(2)]; end
 %    function k = get.qMinus(~), k = [1/sqrt(2);-1/sqrt(2)]; end
-     end
+%    end
 % 
 end
 
