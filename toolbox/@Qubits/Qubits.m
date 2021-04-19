@@ -23,6 +23,19 @@ methods
    function obj = Qubits(vec)       
        if nargin<1, vec=[1;0]; end        
        obj.vec=vec;
+        if ~evalin('base','exist(''q0'',''var'')')        
+            assignin('base','q0',obj.qZero)
+        end
+        if ~evalin('base','exist(''q1'',''var'')')        
+            assignin('base','q1',obj.qOne)
+        end
+        if ~evalin('base','exist(''qp'',''var'')')        
+            assignin('base','qp',obj.qPlus)
+        end
+        if ~evalin('base','exist(''qm'',''var'')')        
+            assignin('base','qm',obj.qMinus)
+        end
+       
     end
         
 %    % output = myFunc(obj,arg1,arg2)

@@ -1,6 +1,7 @@
 classdef Gates
    properties
-      mat
+      mat  double
+      name string 
    end
    
    properties (Dependent)
@@ -9,10 +10,26 @@ classdef Gates
 
    methods
    % output = myFunc(obj,arg1,arg2)
-   function obj = Gates(mat)
-        if nargin<1, mat=0; end
-        obj.vec=obj.;
-    end
+   function obj = Gates(mat,name)
+        if nargin<1, mat=eye(2); end
+        if nargin<1, name="I"; end
+        obj.mat=mat;
+        obj.name=name;
+        if ~evalin('base','exist(''X'',''var'')')
+            assignin('base','X',obj.X)
+        end
+        if ~evalin('base','exist(''Y'',''var'')')
+            assignin('base','Y',obj.Y)
+        end
+        if ~evalin('base','exist(''Z'',''var'')')
+        assignin('base','Z',obj.Z)
+        end
+        if ~evalin('base','exist(''H'',''var'')')
+        assignin('base','H',obj.H)
+        end
+        assignin('base','S',obj.S)
+        assignin('base','T',obj.T)
+   end
 
    function m = get.X(~), m = [0 1; 1 0]; end
    function m = get.Y(~), m = [0 -1i; 1i 0]; end

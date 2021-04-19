@@ -15,12 +15,39 @@ classdef Gates
         if nargin<1, name="I"; end
         obj.mat=mat;
         obj.name=name;
-        assignin('base','X',obj.X)
-        assignin('base','Y',obj.Y)
-        assignin('base','Z',obj.Z)
-        assignin('base','H',obj.H)
-        assignin('base','S',obj.S)
-        assignin('base','T',obj.T)
+        if ~evalin('base','exist(''X'',''var'')')
+            assignin('base','X',obj.X)
+        end
+        if ~evalin('base','exist(''Y'',''var'')')
+            assignin('base','Y',obj.Y)
+        end
+        if ~evalin('base','exist(''Z'',''var'')')
+            assignin('base','Z',obj.Z)
+        end
+        if ~evalin('base','exist(''H'',''var'')')
+            assignin('base','H',obj.H)
+        end
+        if ~evalin('base','exist(''S'',''var'')')        
+            assignin('base','S',obj.S)
+        end
+        if ~evalin('base','exist(''T'',''var'')')        
+            assignin('base','T',obj.T)
+        end
+        if ~evalin('base','exist(''CX'',''var'')')        
+            assignin('base','CX',obj.CX)
+        end
+        if ~evalin('base','exist(''CZ'',''var'')')        
+            assignin('base','CZ',obj.CZ)
+        end
+        if ~evalin('base','exist(''SWAP'',''var'')')        
+            assignin('base','SWAP',obj.SWAP)
+        end
+        if ~evalin('base','exist(''CCX'',''var'')')        
+            assignin('base','CCX',obj.CCX)
+        end
+        if ~evalin('base','exist(''I'',''var'')')        
+            assignin('base','I',obj.I)
+        end
    end
 
    function m = get.X(~), m = [0 1; 1 0]; end
