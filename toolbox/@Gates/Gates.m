@@ -15,6 +15,12 @@ classdef Gates
         if nargin<1, name="I"; end
         obj.mat=mat;
         obj.name=name;
+        assignin('base','X',obj.X)
+        assignin('base','Y',obj.Y)
+        assignin('base','Z',obj.Z)
+        assignin('base','H',obj.H)
+        assignin('base','S',obj.S)
+        assignin('base','T',obj.T)
    end
 
    function m = get.X(~), m = [0 1; 1 0]; end
