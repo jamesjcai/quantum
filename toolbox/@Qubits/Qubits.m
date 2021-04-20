@@ -22,7 +22,7 @@ classdef Qubits
 methods
    function obj = Qubits(vec)       
        if nargin<1, vec=[1;0]; end        
-       obj.vec=vec;
+       obj.vec=ket(vec);
         if ~evalin('base','exist(''q0'',''var'')')        
             assignin('base','q0',obj.qZero)
         end
