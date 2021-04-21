@@ -10,9 +10,10 @@ classdef Gates
 
    methods
    % output = myFunc(obj,arg1,arg2)
+  
    function obj = Gates(mat,name)
         if nargin<1, mat=eye(2); end
-        if nargin<1, name="I"; end
+        if nargin<2 name="I"; end
         obj.mat=mat;
         obj.name=name;
         if ~evalin('base','exist(''X'',''var'')')
@@ -49,7 +50,14 @@ classdef Gates
             assignin('base','I',obj.I)
         end
    end
-
+   
+   function obj = RX(obj,theta)
+        obj.name="RX";
+        obj.mat=[theta theta; theta theta];        
+   end
+   
+   
+   % function m = get.RX(theta), m = [theta 1; 1 0]; end
    function m = get.X(~), m = [0 1; 1 0]; end
    function m = get.Y(~), m = [0 -1i; 1i 0]; end
    function m = get.Z(~), m = [1 0; 0 -1]; end
