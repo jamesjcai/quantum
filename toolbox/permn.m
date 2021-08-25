@@ -146,6 +146,7 @@ else
         M = V(I) ;
     end
 end
+end
 
 % Algorithm using for-loops
 % which can be implemented in C or VB
