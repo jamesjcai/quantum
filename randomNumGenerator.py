@@ -1,4 +1,4 @@
-%matplotlib inline
+#matplotlib inline
 # Importing standard Qiskit libraries and configuring account
 from qiskit import QuantumCircuit, execute, Aer, IBMQ, ClassicalRegister, QuantumRegister
 from qiskit.compiler import transpile, assemble
