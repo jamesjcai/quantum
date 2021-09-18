@@ -65,6 +65,20 @@ classdef Gates
                 sin(theta/2) cos(theta/2)];
    end
 
+   function obj = CRY(obj,theta,isflipped)
+       if nargin<3, isflipped=false; end
+       if nargin<2, theta=pi/2; end
+       obj.name="CRY";
+       ry=[cos(theta/2) -sin(theta/2);...
+                sin(theta/2) cos(theta/2)];
+       q0=[1; 0]; q1=[0; 1];
+       if isflipped
+           obj.mat=kron(q0*q0',eye(2))+kron(q1*q1',ry);
+       else
+           obj.mat=kron(eye(2),q0*q0')+kron(ry,q1*q1');
+       end            
+   end   
+   
    function obj = RZ(obj,theta)
        if nargin<2, theta=pi/2; end
        obj.name="RZ";
