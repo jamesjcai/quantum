@@ -13,7 +13,7 @@ classdef Gates
   
    function obj = Gates(mat,name)
         if nargin<1, mat=eye(2); end
-        if nargin<2 name="I"; end
+        if nargin<2, name="I"; end
         obj.mat=mat;
         obj.name=name;
         if ~evalin('base','exist(''X'',''var'')')
@@ -52,21 +52,35 @@ classdef Gates
    end
    
    function obj = RX(obj,theta)
-        obj.name="RX";
-        obj.mat=[theta theta; theta theta];        
+       if nargin<2, theta=pi/2; end
+       obj.name="RX";
+       obj.mat=[cos(theta/2) -1j*sin(theta/2);...
+                -1j*sin(theta/2) cos(theta)];        
+   end
+    
+   function obj = RY(obj,theta)
+       if nargin<2, theta=pi/2; end
+       obj.name="RY";
+       obj.mat=[cos(theta/2) -sin(theta/2);...
+                sin(theta/2) cos(theta/2)];
+   end
+
+   function obj = RZ(obj,theta)
+       if nargin<2, theta=pi/2; end
+       obj.name="RZ";
+       obj.mat=[exp(-1j*theta/2) 0;...
+                0 exp(1j*theta/2)];
    end
    
-   
-   % function m = get.RX(theta), m = [theta 1; 1 0]; end
    function m = get.X(~), m = [0 1; 1 0]; end
-   function m = get.Y(~), m = [0 -1i; 1i 0]; end
+   function m = get.Y(~), m = [0 -1j; 1j 0]; end
    function m = get.Z(~), m = [1 0; 0 -1]; end
    function m = get.H(~), m = [1 1; 1 -1]./sqrt(2); end
-   function m = get.S(~), m = [1 0; 0 1i]; end
-   function m = get.T(~), m = [1 0; 0 exp(1i*pi/4)]; end
-   function m = get.CX(~), m = [1 0 0 0;0 1 0 0;0 0 0 1;0 0 1 0]; end
-   function m = get.CZ(~), m = [1 0 0 0;0 1 0 0;0 0 1 0;0 0 0 -1]; end
-   function m = get.SWAP(~), m = [1 0 0 0;0 0 1 0;0 1 0 0;0 0 0 1]; end
+   function m = get.S(~), m = [1 0; 0 1j]; end
+   function m = get.T(~), m = [1 0; 0 exp(1j*pi/4)]; end
+   function m = get.CX(~), m = [1 0 0 0; 0 1 0 0; 0 0 0 1; 0 0 1 0]; end
+   function m = get.CZ(~), m = [1 0 0 0; 0 1 0 0; 0 0 1 0; 0 0 0 -1]; end
+   function m = get.SWAP(~), m = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1]; end
    function m = get.CCX(~), m = eye(8); m(7:8,7:8)=flip(m(7:8,7:8)); end
    function m = get.I(~), m = eye(2); end
    end  
