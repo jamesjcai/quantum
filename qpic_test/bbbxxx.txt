@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+\begin{document}
+
+\begin{quantikz}
+\gategroup[wires=3,steps=11,style={rounded corners,fill=blue!20}, background]{}
+&\lstick{$|{0}\rangle$} & \gate{H}&\ctrl{1} & \ctrl{2} &\qw &\qw 
+ \rstick[wires=3]{$\frac{|{000}\rangle + |{111}\rangle}{\sqrt{2}}$} 
+\\
+&\lstick{$|{0}\rangle$} & \gate{H}& \control{} & \qw& \gate{H} &\qw
+\\
+&\lstick{$|{0}\rangle$} & \gate{H}& \qw & \control{} & \gate{H} &\qw
+&&&&
+\end{quantikz}
+
+\end{document}
+
