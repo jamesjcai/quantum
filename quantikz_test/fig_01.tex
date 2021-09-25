@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+\begin{document}
+
+\begin{quantikz}
+\lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \gate{U} & \ctrl{1} & \swap{2} & \ctrl{1} & \qw \\
+\lstick{$\ket{0}$} & \gate{H} & \targ{} & \octrl{-1} & \control{} & \qw & \octrl{1} & \qw \\
+&&&&&\targX{} & \gate{U} & \qw \\
+\lstick{$\ket{0}$} & \gate{R_y(\theta_1)} & \ctrl{1} & \qw & \meter{} & \qw \\
+\lstick{$\ket{0}$} & \gate{R_y(\theta_2)} & \gate{Ry(\phi_1)} & \ctrl{1} & \meter{} & \qw \\
+\lstick{$\ket{0}$} & \gate{R_y(\theta_3)} & \qw & \gate{R_y(\phi_2)} & \meter{} & \qw \\
+\lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \qw & \meter{} & \qw \\
+\lstick{$\ket{0}$} & \gate{H} & \gate{R_y(\phi_1)} & \ctrl{1} & \meter{} & \qw \\
+\lstick{$\ket{0}$} & \gate{H} & \qw & \gate{R_y(\phi_2)} & \meter{} & \qw \\
+\end{quantikz}
+
+
+
+\end{document}
+
+
