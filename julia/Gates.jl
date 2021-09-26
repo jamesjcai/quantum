@@ -3,7 +3,7 @@ module Gates
 using LinearAlgebra
 
 export xGate, yGate, zGate, hGate, iGate, cPhaseShifGate, cNotGate
-export swapGate, rxGate, ryGate, rzGate
+export swapGate, rxGate, ryGate, rzGate, u3Gate, u2Gate, u1Gate
 
 function xGate()
     [0.0 1.0; 1.0 0.0]
@@ -54,15 +54,32 @@ function swapGate()
 end
 
 function rxGate(θ=pi)
+    # u3Gate(θ,-pi/2,pi/2)    
     [cos(θ/2) -1im*sin(θ/2); 1im*sin(θ/2) cos(θ/2)]
 end
 
 function ryGate(θ=pi)
+    # u3Gate(θ,0,0)
     [cos(θ/2) -sin(θ/2); sin(θ/2) cos(θ/2)]
 end
 
 function rzGate(ϕ=pi)
     [1.0 0.0; 0.0 exp(1im*ϕ)]
+end
+
+function u3Gate(θ=pi,ϕ=0,λ=0)
+    # https://qiskit.org/documentation/stubs/qiskit.circuit.library.U3Gate.html
+    [cos(θ/2) -exp(1im*λ)*sin(θ/2); exp(1im*ϕ)*sin(θ/2) exp(1im*(ϕ+λ))*cos(θ/2)]
+end
+
+# https://quantumcomputing.stackexchange.com/questions/2707/what-are-theta-phi-and-lambda-in-cu1theta-ctl-tgt-and-cu3theta-phi-lam
+
+function u2Gate(ϕ=0,λ=0)
+    [1.0 -exp(1im*λ); exp(1im*ϕ) exp(1im*(ϕ+λ))]./√2
+end
+
+function u1Gate(λ=0)
+    [1.0 0.0; 0.0 exp(1im*λ)]
 end
 
 end

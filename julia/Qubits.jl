@@ -1,6 +1,6 @@
 module Qubits
 
-using Kronecker
+using Kronecker, LinearAlgebra
 
 export qZero,
        qOne,
@@ -9,7 +9,8 @@ export qZero,
        qZeroZero,
        qZeroOne,
        qOneZero,
-       qOneOne
+       qOneOne,
+       qBit
 
 function qZero()
     [1.0, 0.0]
@@ -41,6 +42,10 @@ end
 
 function qOneOne()
     collect(qOne()⊗qOne())
+end
+
+function qBit(θ=129,ϕ=42)
+    [cosd(θ/2), exp(1im*pi*(ϕ/180.0))*sind(θ/2)]
 end
 
 end

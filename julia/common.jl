@@ -8,6 +8,7 @@ include("Qubits.jl")
 
 using .Gates
 using .Qubits
+using LinearAlgebra
 
 # https://github.com/ardeleanasm/qchas/blob/1.1.0.0/app/examples/GroversAlgorithm.hs
 
@@ -62,3 +63,36 @@ end
 RY()
 RZ()
 
+
+#function qBit(θ=129,ϕ=42)
+#    [cosd(θ/2), exp(1im*pi*(ϕ/180.0))*sind(θ/2)]
+#end
+
+q=qBit()
+real(diag(q*q'))
+
+ψ=qBit(42,0)
+real(diag(ψ*ψ'))
+
+q=qBit(60,266)
+real(diag(q*q'))
+
+# Phase kickback
+s1=qZero()⊗qBit(129,42)
+g1=hGate()⊗iGate()
+g2=cNotGate()
+s2=g2*g1*s1
+
+real(s2)
+imag(s2)
+angle.(s2)   # Phase angle
+abs.(s2)     # Amplitude
+real(diag(s2*s2'))   # Probability
+
+#OPENQASM 2.0;
+#include "qelib1.inc";
+#qreg q[2];
+#creg c[2];
+#h q[0];
+#u(pi*(129/180),pi*(42/180),pi/2) q[1];
+#cx q[0],q[1];
