@@ -5,7 +5,7 @@ classdef Gates
    end
    
    properties (Dependent)
-      X, Y, Z, H, S, T, CX, CZ, SWAP, CCX, I
+      X, Y, Z, H, S, T, CX, CXflip, CZ, SWAP, CCX, I
    end
 
    methods
@@ -37,6 +37,9 @@ classdef Gates
         if ~evalin('base','exist(''CX'',''var'')')        
             assignin('base','CX',obj.CX)
         end
+        if ~evalin('base','exist(''CXflip'',''var'')')        
+            assignin('base','CXflip',obj.CXflip)
+        end        
         if ~evalin('base','exist(''CZ'',''var'')')        
             assignin('base','CZ',obj.CZ)
         end
@@ -76,7 +79,8 @@ classdef Gates
            obj.mat=kron(q0*q0',eye(2))+kron(q1*q1',ry);
        else
            obj.mat=kron(eye(2),q0*q0')+kron(ry,q1*q1');
-       end            
+       end    
+       % CX*kron(eye(2),RYneg.mat)*CX*kron(eye(2),RYpos.mat)
    end   
    
    function obj = RZ(obj,theta)
@@ -93,6 +97,8 @@ classdef Gates
    function m = get.S(~), m = [1 0; 0 1j]; end
    function m = get.T(~), m = [1 0; 0 exp(1j*pi/4)]; end
    function m = get.CX(~), m = [1 0 0 0; 0 1 0 0; 0 0 0 1; 0 0 1 0]; end
+%   function m = get.CXflip(~), m = [0 1 0 0; 1 0 0 0; 0 0 1 0; 0 0 0 1]; end
+   function m = get.CXflip(~), m = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1]; end
    function m = get.CZ(~), m = [1 0 0 0; 0 1 0 0; 0 0 1 0; 0 0 0 -1]; end
    function m = get.SWAP(~), m = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1]; end
    function m = get.CCX(~), m = eye(8); m(7:8,7:8)=flip(m(7:8,7:8)); end
