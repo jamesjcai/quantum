@@ -12,7 +12,8 @@ export qZero,
        qOneZero,
        qOneOne,
        qBit,
-       ⊗
+       ⊗,
+       measure_z
 
 
 ⊗(A::AbstractVecOrMat, B::AbstractVecOrMat) = kron(A, B)
@@ -51,6 +52,10 @@ end
 
 function qBit(θ=129,ϕ=42)
     [cosd(θ/2), exp(1im*pi*(ϕ/180.0))*sind(θ/2)]
+end
+
+function measure_z(c)
+    real(diag(c*c'))
 end
 
 end

@@ -81,6 +81,23 @@ classdef Gates
            obj.mat=kron(eye(2),q0*q0')+kron(ry,q1*q1');
        end    
        % CX*kron(eye(2),RYneg.mat)*CX*kron(eye(2),RYpos.mat)
+   end
+   
+   function obj = CRX(obj,theta,isflipped)
+       if nargin<3, isflipped=false; end
+       if nargin<2, theta=pi/2; end
+       obj.name="CRX";
+
+       rx=[cos(theta/2) -1j*sin(theta/2);...
+                -1j*sin(theta/2) cos(theta)];  
+            
+       q0=[1; 0]; q1=[0; 1];
+       if isflipped
+           obj.mat=kron(q0*q0',eye(2))+kron(q1*q1',rx);
+       else
+           obj.mat=kron(eye(2),q0*q0')+kron(rx,q1*q1');
+       end    
+       % CX*kron(eye(2),RYneg.mat)*CX*kron(eye(2),RYpos.mat)
    end   
    
    function obj = RZ(obj,theta)

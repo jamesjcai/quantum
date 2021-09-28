@@ -6,7 +6,7 @@ using LinearAlgebra
 using .Qubits
 
 export xGate, yGate, zGate, hGate, iGate, cPhaseShifGate, cNotGate, cxGate
-export swapGate, rxGate, ryGate, rzGate, u3Gate, u2Gate, u1Gate, cryGate
+export swapGate, rxGate, ryGate, rzGate, u3Gate, u2Gate, u1Gate, cryGate, crxGate
 
 function xGate()
     [0.0 1.0; 1.0 0.0]
@@ -99,5 +99,14 @@ function cryGate(θ=pi,rev=false)
     end
 end
 
+function crxGate(θ=pi,rev=false)
+    b=qOne()*qOne()'
+    a=qZero()*qZero()'
+    if rev
+        a⊗iGate()+b⊗rxGate(θ)
+    else
+        iGate()⊗a+rxGate(θ)⊗b
+    end
+end
 
 end
