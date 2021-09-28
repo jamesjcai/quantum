@@ -9,6 +9,14 @@ include("Qubits.jl")
 using .Gates
 using .Qubits
 using LinearAlgebra
+using Kronecker
+
+2*acos(√0.7)
+
+2*acos(√0.6)/pi
+
+
+
 
 # https://github.com/ardeleanasm/qchas/blob/1.1.0.0/app/examples/GroversAlgorithm.hs
 
@@ -18,7 +26,7 @@ using LinearAlgebra
 #println(f,1)
 #close(f)
 
-using Kronecker
+
 
 q₀=[1,0]
 q₁=[0,1]
