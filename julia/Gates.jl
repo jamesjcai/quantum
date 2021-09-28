@@ -1,9 +1,12 @@
 module Gates
 
-using LinearAlgebra
 
-export xGate, yGate, zGate, hGate, iGate, cPhaseShifGate, cNotGate
-export swapGate, rxGate, ryGate, rzGate, u3Gate, u2Gate, u1Gate
+include("Qubits.jl")
+using LinearAlgebra
+using .Qubits
+
+export xGate, yGate, zGate, hGate, iGate, cPhaseShifGate, cNotGate, cxGate
+export swapGate, rxGate, ryGate, rzGate, u3Gate, u2Gate, u1Gate, cryGate
 
 function xGate()
     [0.0 1.0; 1.0 0.0]
@@ -46,6 +49,10 @@ function cNotGate(rev=false)
     end   
 end
 
+function cxGate(rev=false)
+    cNotGate(rev)
+end
+
 function swapGate()
     [1.0 0.0 0.0 0.0;
      0.0 0.0 1.0 0.0;
@@ -81,5 +88,16 @@ end
 function u1Gate(λ=0)
     [1.0 0.0; 0.0 exp(1im*λ)]
 end
+
+function cryGate(θ=pi,rev=false)
+    b=qOne()*qOne()'
+    a=qZero()*qZero()'
+    if rev
+        a⊗iGate()+b⊗ryGate(θ)
+    else
+        iGate()⊗a+ryGate(θ)⊗b
+    end
+end
+
 
 end

@@ -1,6 +1,7 @@
 module Qubits
 
-using Kronecker, LinearAlgebra
+# using Kronecker, 
+using LinearAlgebra
 
 export qZero,
        qOne,
@@ -10,7 +11,11 @@ export qZero,
        qZeroOne,
        qOneZero,
        qOneOne,
-       qBit
+       qBit,
+       ⊗
+
+
+⊗(A::AbstractVecOrMat, B::AbstractVecOrMat) = kron(A, B)
 
 function qZero()
     [1.0, 0.0]
