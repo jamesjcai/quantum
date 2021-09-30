@@ -24,43 +24,44 @@ for k=1:length(b)
     end
 end
 
-
-figure;
-subplot(221)
+%%
+% figure('position', round(1.75 * [0 0 560 420]));
+figure('position', round([0 0 560*4 420]));
+subplot(141)
 plotheat(d1,'00')
-subplot(222)
+subplot(142)
 plotheat(d2,'01')
-subplot(223)
+subplot(143)
 plotheat(d3,'10')
-subplot(224)
+subplot(144)
 plotheat(d4,'11')
 
 function plotheat(d4,txt)
-b=-pi:0.15:pi;
-[X,Y] = meshgrid(b);
-s=mesh(X,Y,d4);
-s.FaceColor = 'flat';
-xticks([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi])
-xticklabels({'-\pi','-3\pi/4','-\pi/2','-\pi/4','0','\pi/4','\pi/2','3\pi/4','\pi'});
-yticks([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi])
-yticklabels({'-\pi','-3\pi/4','-\pi/2','-\pi/4','0','\pi/4','\pi/2','3\pi/4','\pi'});
+    b=-pi:0.15:pi;
+    [X,Y] = meshgrid(b);
+    s=mesh(X,Y,d4);
+    s.FaceColor = 'flat';
+    xticks([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi])
+    xticklabels({'-\pi','-3\pi/4','-\pi/2','-\pi/4','0','\pi/4','\pi/2','3\pi/4','\pi'});
+    yticks([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi])
+    yticklabels({'-\pi','-3\pi/4','-\pi/2','-\pi/4','0','\pi/4','\pi/2','3\pi/4','\pi'});
 
-%yticks([-pi, -0.5*pi, 0, 0.5*pi, pi])
-%yticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
-%a = get(gca,'XTickLabel');  
-%set(gca,'XTickLabel',a,'fontsize',15)
+    %yticks([-pi, -0.5*pi, 0, 0.5*pi, pi])
+    %yticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    %a = get(gca,'XTickLabel');  
+    %set(gca,'XTickLabel',a,'fontsize',15)
 
-zlabel('Probability')
-xlabel('\bf{\theta}','FontSize',18)
-ylabel('\bf{\theta''}','FontSize',18)
-title(txt)
-xline(0,'m-'); 
-yline(0,'m-');
-xline([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi],'w:');
-yline([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi],'w:');
-view(2); colorbar;
-xlim([-pi pi])
-ylim([-pi pi])
+    zlabel('Probability')
+    xlabel('\bf{\theta}','FontSize',18)
+    ylabel('\bf{\theta''}','FontSize',18)
+    title(txt)
+    xline(0,'m-'); 
+    yline(0,'m-');
+    xline([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi],'w:');
+    yline([-pi, -3*pi/4 -0.5*pi, -pi/4, 0, pi/4, 0.5*pi, 3*pi/4, pi],'w:');
+    view(2); colorbar;
+    xlim([-pi pi])
+    ylim([-pi pi])
 end
 
 %{
