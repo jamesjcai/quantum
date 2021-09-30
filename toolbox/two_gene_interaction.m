@@ -1,3 +1,6 @@
+g=Gates;
+q=Qubits;
+
 a=0:0.05:1;
 b=2*acos(sqrt(a));
 
@@ -11,7 +14,7 @@ HH=kron(H,H)*kron(q0,q0);
 P=[];
 for k=1:length(b)
     for l=1:length(b)
-        c=g.CRX(b(k),true).mat*g.CRX(b(l)).mat*HH;
+        c=g.CRY(b(k),true).mat*g.CRY(b(l)).mat*HH;
         x=diag(c*c');
         P=[P; x(2:4)'];
         d1(l,k)=x(1);
