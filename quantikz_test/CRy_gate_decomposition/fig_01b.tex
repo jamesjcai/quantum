@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+\begin{document}
+
+
+\begin{quantikz}
+q_0 \ & \lstick{$\ket{0}$} & \gate{Ry(\phi_0)} & \qw & \qw & \ctrl{1} & \qw & \ctrl{1} & \qw & \gate{Ry(\theta_{1,0}/2)} & \gate{X} & \gate{Ry(-\theta_{1,0}/2)} & \gate{X} & \qw & \meter{} & \qw \\
+q_1 \ & \lstick{$\ket{0}$} & \gate{Ry(\phi_1)} & \qw & \gate{Ry(\theta_{0,1}/2)} & \gate{X}  & \gate{Ry(-\theta_{0,1}/2)} & \gate{X} & \qw & \qw & \ctrl{-1} & \qw & \ctrl{-1}  & \qw & \meter{} & \qw \\
+\end{quantikz}
+\end{document}
+
+
