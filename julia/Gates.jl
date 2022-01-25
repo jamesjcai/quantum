@@ -61,7 +61,7 @@ function swapGate()
 end
 
 function rxGate(θ=pi)
-    # u3Gate(θ,-pi/2,pi/2)    
+    # u3Gate(θ,-pi/2,pi/2)
     [cos(θ/2) -1im*sin(θ/2); 1im*sin(θ/2) cos(θ/2)]
 end
 

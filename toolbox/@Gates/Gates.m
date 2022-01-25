@@ -58,7 +58,7 @@ classdef Gates
        if nargin<2, theta=pi/2; end
        obj.name="RX";
        obj.mat=[cos(theta/2) -1j*sin(theta/2);...
-                -1j*sin(theta/2) cos(theta)];        
+                -1j*sin(theta/2) cos(theta/2)];        
    end
     
    function obj = RY(obj,theta)
