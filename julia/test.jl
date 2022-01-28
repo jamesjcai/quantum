@@ -1,5 +1,5 @@
-# cd("C:\\Users\\jcai.AUTH\\Documents\\GitHub\\quantum\\julia")
-cd("U:\\GitHub\\quantum\\julia")
+cd("C:\\Users\\jcai\\Documents\\GitHub\\quantum\\julia")
+# cd("U:\\GitHub\\quantum\\julia")
 #include("Qchas.jl")
 #include("C:\\Users\\jcai.AUTH\\Documents\\GitHub\\quantum\\julia\\Qchas.jl")
 #using .Qchas
