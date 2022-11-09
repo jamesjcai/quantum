@@ -13,6 +13,7 @@ for k=1:length(theta)
     
     p=(G2*G1*Q).^2;
     oddp(k)=(p(1)+p(4))/(p(2)+p(3));
+    %oddp(k)=p(2)+p(4);
     P=[P p];
 end
 figure;
