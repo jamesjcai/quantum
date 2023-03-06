@@ -1,8 +1,8 @@
 % MATLAB routines for quantum mechanics.
-% 
+%
 % General
 %  contents              - List of commands
-%  ver                   - Version
+%  ver_qubit4matlab      - Version
 %  example1              - Example with two-state systems
 %  example2              - Example with multi-qubit states
 %  example3              - Example about operators in spin chains
@@ -12,7 +12,7 @@
 %  ket                   - Creating a normalized column vector (Dirac's ket)
 %  bra                   - Creating a normalized row vector    (Dirac's bra)
 %  ketbra                - Creating a projector from a vector
-%  ketbra2               - Creating a projector from the argument 
+%  ketbra2               - Creating a projector from the argument
 %                          if the argument is a vector.
 %  braket                - Dirac's braket
 %  ex                    - Expectation value
@@ -30,7 +30,7 @@
 %  reorder               - Reorder a register of qudits
 %  reordermat            - The operator corresponding to reordering
 %                          a register of qudits
-%  reordervec            - Transformation vector for reordering 
+%  reordervec            - Transformation vector for reordering
 %                          a register of qudits
 %  shiftquditsleft       - Shift qudits to the left
 %  shiftquditsright      - Shift qudits to the right
@@ -60,6 +60,9 @@
 %  BES_UPB3x3            - 3x3 UPB bound entangled state
 %  BES_Breuer            - Breuer's bound entangled state
 %  BES_Watrous           - Watrous' bound entangled state
+%  BES_CCNR4x4           - 4x4 bound entangled state with the highest violation
+%                          of the CCNR criterion
+%  example_BES_CCNR4x4   - example for using BES_CCNR4x4
 %  U_CNOT                - 4x4 unitary matrix of a CNOT gate
 %  U_H                   - 2x2 unitary matrix for the Hadamard gate
 %  paulixyz              - Define Pauli matrices x,y,z and e=eye(2)
@@ -71,7 +74,7 @@
 %  sud                   - Define the SU(d) generators
 %
 %
-% Continuous variable (CV) systems 
+% Continuous variable (CV) systems
 %  aop                   - annihilation operator
 %  nop                   - number operator
 %  xop                   - x operator
@@ -82,7 +85,7 @@
 % Formatted input/output
 %  printv                - Print state vector in product basis
 %  decompose             - Display pauli decomposition of a matrix
-%  paulistr              - Convert symbolic string to operator 
+%  paulistr              - Convert symbolic string to operator
 %
 %
 % Two-qudit interactions and spin chains
@@ -94,14 +97,14 @@
 %  nnchainp              - Spin chain Hamiltonian with a periodic boundary
 %                          condition
 %  ising                 - Ising spin chain Hamiltonian
-%  isingp                - Ising spin chain Hamiltonian with a periodic 
+%  isingp                - Ising spin chain Hamiltonian with a periodic
 %                          boundary condition
 %  ising_ground          - Ground state energy of Ising model
 %  ising_free            - Free energy in thermal state
 %  ising_thermal         - Internal energy in thermal state
 %  ising_classical_ground - Ground state energy for the classical Ising model
 %  heisenberg            - Heisenberg spin chain Hamiltonian
-%  heisenbergp           - Heisenberg spin chain Hamiltonian with a periodic 
+%  heisenbergp           - Heisenberg spin chain Hamiltonian with a periodic
 %                          boundary condition
 %  xy_classical_ground   - Ground state energy for the classical xy model
 %  orthogobs             - Orthogonal observables for a qudit
@@ -109,7 +112,7 @@
 %
 % Entanglement
 %  pt                    - Partial transpose for a qudit register
-%  pt_nonorm             - Like ppt, but without normalization. 
+%  pt_nonorm             - Like ppt, but without normalization.
 %                          Works with the sdp frontend yalmip.
 %  negativity            - Compute the negativity of the density
 %                          matrix
@@ -124,13 +127,13 @@
 %  maxbisep              - Maximum of an operator for biseparable states
 %  maxb                  - Like maxbisep, but for all bipartitions
 %  overlapb              - Maximum overlap of a pure state with bisep. states
-%  maxppt                - Maximum of an operator expectation value 
+%  maxppt                - Maximum of an operator expectation value
 %                          for states with a positive partial transpose
 %  example_maxppt        - Example for the usage of maxppt
 %  optwitness            - Obtaining optimal entanglement witnesses
 %  example_optwitness    - Example for the usage of optwitness
 %  elin                  - Linear entropy of entanglement using
-%                          semidefinite programing. Works faster for low 
+%                          semidefinite programing. Works faster for low
 %                          rank states.
 %  example_elin          - Example for the elin function
 %  example_elin2         - Second example for the elin function
@@ -148,13 +151,18 @@
 %
 %
 % Quantum metrology
-%  fisher                - Quantum Fisher information (qFi) 
+%  fisher                - Quantum Fisher information (qFi)
 %  sld                   - Symmetric logarithmic derivative (SLD)
 %  skewinf               - Wigner-Yanase skew information
 %  fisherwit_dicke       - Bounding the qFi from below based on the fidelity
 %                          with respect to Dicke states
 %  fisherwit_spinsq      - Bounding the qFi from below based on spin
 %                          squeezing experiments
+% Concave roof
+%  concroof              - Obtain concave roof over decompistions of
+%                          the density matrix to pure states or
+%                          to mixed states
+%  example_concroof      - Example for concroof
 %
 %
 % Random vectors, matrices and operations
@@ -172,8 +180,8 @@
 % Miscellaneous simple commands
 %  proj_sym              - Projector to the symmetric subspace
 %  proj_asym             - Projector to the antisymmetric subspace
-%  maxeig                - Maximum eigenvalue of a matrix    
-%  mineig                - Minimum eigenvalue of a matrix 
+%  maxeig                - Maximum eigenvalue of a matrix
+%  mineig                - Minimum eigenvalue of a matrix
 %  trace2                - Trace-square of a matrix
 %  trnorm                - Trace-norm
 %  comm                  - Commutator
@@ -209,3 +217,19 @@
 %  bipartite2prodbasis   - Bipartite representation to symmetric representation
 %  ptsym                 - Partial transpose of a symmetric multiqubit state
 %  example_ptsym         - Example for using ptsym
+%
+%
+% Wasserstein distance
+%  wdistsquare_GMPC_ppt  - Wasserstein GMPC distance square, 
+%                          optimization over PPT states
+%  wdistsquare_GMPC      - Wasserstein GMPC distance square
+%  wdistsquare_ppt       - Wasserstein distance square,
+%                          optimization over PPT states
+%  wdistsquare           - Wasserstein distance square
+%  wvar_GMPC_ppt         - Wasserstein GMPC variance, 
+%                          optimization over PPT states
+%  wvar_GMPC             - Wasserstein GMPC variance
+%  wvar_ppt              - Wasserstein variance,
+%                          optimization over PPT states
+%  wvar                  - Wasserstein variance
+%  example_wdistsquare   - Example for Wasserstein routines

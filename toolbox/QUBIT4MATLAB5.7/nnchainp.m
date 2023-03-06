@@ -5,6 +5,8 @@
 %   If argument n is omitted than the default is taking to be
 %   the value of global variable N.
 %   Works even for chains of qudits with a dimension larger than two.
+%   For N=2, it does not realize the coupling between the two qudits
+%   twice, only once.
 
 function h=nnchainp(a,b,varargin)
 if isempty(varargin),

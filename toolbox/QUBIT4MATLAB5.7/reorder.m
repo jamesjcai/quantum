@@ -14,10 +14,10 @@
 %    
 %    Let us assume that b1,b2,b3,b4 are single qubit density matrices.
 %
-%    reorder([4 3 2 1],mkron(b4,b3,b2,b1))=mkron(b4,b3,b2,b1)
+%    reorder(mkron(b4,b3,b2,b1),[4 3 2 1])=mkron(b4,b3,b2,b1)
 %    (doing nothing)
 %
-%    reorder([1 2 3 4],mkron(b4,b3,b2,b1))=mkron(b1,b2,b3,b4)
+%    reorder(mkron(b4,b3,b2,b1),[1 2 3 4])=mkron(b1,b2,b3,b4)
 %    (putting the qubits in an opposite order)
 %
 %    If d is a vector, then it can be used to give the

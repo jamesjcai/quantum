@@ -27,7 +27,7 @@ if N==Inf;
    lambda=J/2/Gamma;
 
    k=1;
-   N=1000;
+   N=10000; % Must be even
    m=-N/2:1:N/2-1;
    q=2*pi*m/N;
    dq=1;
@@ -46,7 +46,8 @@ else
    e=[1 0; 0 1];
 
    % Using routines from the library to make the Ising Hamiltonian
-   H=-nnchainp(x,x,N)-BField*nnchainp(z,e,N);
+   H=-nnchainp(x,x,N)-BField*coll(z,N);
+   %H=sparse(H);
    rho=expm(-H/T);
    rho=rho/trace(rho);
    E0=trace(H*rho)/N;

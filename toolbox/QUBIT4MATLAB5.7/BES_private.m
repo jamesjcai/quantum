@@ -16,6 +16,8 @@
 %
 %    See also example_BES_private.
 
+% Modified for u=[1 1;1 -1];
+
 function rho=BES_private(D,varargin)
 
 if isempty(varargin),
@@ -35,6 +37,9 @@ for j=1:d
         U(k,j)=sqrt(1/d)*exp(i*2*pi*j*k/d);
     end
 end
+
+% TEST
+U(1,1)=-U(1,1);U(2,2)=-U(2,2);
 
 p1=sqrt(d)/(1+sqrt(d));
 p2=1-p1;

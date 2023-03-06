@@ -1,6 +1,6 @@
 % Test new routines and compare them to old versions
 % or test self-consistency
-addpath('../');
+
 clear all
 format compact
 
@@ -61,6 +61,17 @@ for n=1:Nit
 end
 toc_fisher_V_5_5=toc
 ratio_of_execution_times=toc_fisher_V_5_5/toc_fisher
+disp('(Should be larger than 1.)')
+
+% Pure state
+d=4;
+r=ketbra(rvec(1,d));
+A=rhermitian(1,d);
+f1=fisher(r,A);
+f2=4*va(A,r);
+if norm(f1-f2)>1e-14
+    error('Error') 
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
@@ -172,6 +183,44 @@ r1=mkron(s4,s3,s2,s1);
 r2=reorder(r1,[4 2 3 1],[2 3 2 3]); 
 r2b=mkron(s4,s2,s3,s1);
 if norm(r2-r2b)>1e-10
+    error('Error') 
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% ising_thermal.m
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+B=2;
+T=0.1;
+% N>=3
+N=3;
+if norm(ising_thermal(B,T,N)-ising_thermal_V_5_8(B,T,N))>1e-10
+    error('Error') 
+end
+B=0.5;
+T=0.5;
+% N>=3
+N=7;
+if norm(ising_thermal(B,T,N)-ising_thermal_V_5_8(B,T,N))>1e-10
+    error('Error') 
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% ising_ground.m
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+B=2;
+% N>=3
+N=3;
+if norm(ising_ground(B,N)-ising_ground_V_5_8(B,N))>1e-14
+    error('Error') 
+end
+B=0.5;
+% N>=3
+N=7;
+if norm(ising_ground(B,N)-ising_ground_V_5_8(B,N))>1e-14
     error('Error') 
 end
 

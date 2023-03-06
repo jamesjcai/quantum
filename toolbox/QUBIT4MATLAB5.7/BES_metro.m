@@ -5,10 +5,10 @@
 %    the sate will be of dimension 2^(n+1)x2^(n+1).
 %    Works for D=6 or power of two as 4,8,16,32,64,128,etc.
 %
-%    BES_metro2020(n,v) with v=0 provides the state
+%    BES_metro(n,v) with v=0 provides the state
 %    corresponding to the order of subsystems
 %    ABA'B', which is also used in the paper.
-%    BES_metro2020(n,v) with v=1 provides the state
+%    BES_metro(n,v) with v=1 provides the state
 %    corresponding to the order of subsystems
 %    AA'BB', which is better to study entanglement between AA' and BB'.
 %    If the parameter v is omitted then its value is

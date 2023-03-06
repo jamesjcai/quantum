@@ -10,7 +10,7 @@
 
 function rhoR=mrealign(rho,list,varargin)
 
-% rho is should not be normalized
+% rho should not be normalized
 % thus we do not use: "rho=ketbra2(rho);"
 
 if isempty(varargin),

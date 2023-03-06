@@ -24,12 +24,12 @@ if N==Inf;
 
    % Using the paper
    % Pfeuty, Ann. Phys. 57, 79-90 (1970)
-   % Eq. (3.2)
+   
    J=4;
    Gamma=2*BField;
    lambda=J/2/Gamma;
 
-   % Elliptic integral
+   % Elliptic integral, using Eq. (3.2)
    dphi=pi/1000000;
    phi=0:dphi:pi/2;
    theta=sqrt(4*lambda/(1+lambda)^2);
@@ -38,7 +38,14 @@ if N==Inf;
    E0=-Gamma*2/pi*(1+lambda)*Eint/2;
 
    % /2 is added compared to the paper ...
-
+   % One can compare the results with the value for finite chain.
+   
+%    % Alternative based on (2.13), (2.10), and (2.11)
+%    N=10000000;
+%    k=-N/2:1:N/2-1;
+%    Lambdak=(1+lambda.^2+2*lambda.*cos(k)).^0.5;
+%    E0=-Gamma/2*sum(Lambdak)/N;
+   
 else
    % Numerical solution for N qubits
 
@@ -48,7 +55,7 @@ else
    e=[1 0; 0 1];
 
    % Using routines from the library to make the Ising Hamiltonian
-   H=-nnchainp(x,x,N)-BField*nnchainp(z,e,N);
+   H=-nnchainp(x,x,N)-BField*coll(z,N);
    E0=min(real(eig(H)))/N;
 
 end %if

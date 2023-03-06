@@ -4,7 +4,7 @@
 %          Note that fisher(rho,A,A)=fisher(rho,A).
 %          The form fisher(rho,A,B,threshold) makes it possible
 %          to define the threshold below which an eigenvalue is
-%          consdiered zero. The defaults value is 1e-20.
+%          consdiered zero. The default value is 1e-14.
 
 function f=fisher(rho,J,varargin)
 
@@ -13,14 +13,16 @@ function f=fisher(rho,J,varargin)
 % non-orthogonal eigenvalues for eig
 rho=(rho+rho')/2;
 
-%Threshold=1e-10;
-Threshold=1e-20;
+Threshold=1e-14;
 
 if length(varargin)==0
     
     [sy,sx]=size(rho);
     [v,d]=eig(rho);
-    if min(diag(d))>Threshold
+    if sum(diag(d)>Threshold)==1
+        % pure state
+        f=4*trace(J^2*rho)-4*trace(J*rho)^2;
+    elseif min(diag(d))>Threshold
         % full rank
         f=0;
         for n=1:sx
@@ -31,6 +33,7 @@ if length(varargin)==0
                 f=f+(lambdam-lambdan)^2/(lambdam+lambdan)*abs(w*v(:,m))^2;
             end %for
         end %for
+        f=f*4; % Because of a missing factor of 2, and because we count only half of the terms
     else
         % not full rank
         f=0;
@@ -39,15 +42,14 @@ if length(varargin)==0
             w=v(:,n)'*J;
             for m=1:n-1
                 lambdam=d(m,m);
-                if abs(lambdam+lambdan)>Threshold;
+                if abs(lambdam+lambdan)>2*Threshold;
                     f=f+(lambdam-lambdan)^2/(lambdam+lambdan)*abs(w*v(:,m))^2;
                 end %if
             end %for
         end %for
+        f=f*4; % Because of a missing factor of 2, and because we count only half of the terms
     end
-    
-    f=f*4; % Because of a missing factor of 2, and because we count only half of the terms
-    
+       
 else
     
     if length(varargin)==2

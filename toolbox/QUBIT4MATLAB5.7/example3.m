@@ -11,7 +11,6 @@ echo on
 % Define Pauli spin matrices x,y,z and e
 paulixyz
 
-%%
 % Define Heisenberg interaction for two qubits
 H_H=kron(x,x)+kron(y,y)+kron(z,z)
 

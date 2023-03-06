@@ -22,7 +22,7 @@ end %if
    z=[1 0; 0 -1];
    e=[1 0; 0 1];
 
-   % Using routines from the library to make the Ising Hamiltonian
+   % Using routines from the library to make the Heisenberg Hamiltonian
    H=nnchain(z,z,N)+nnchain(x,x,N)+nnchain(y,y,N);
  
 

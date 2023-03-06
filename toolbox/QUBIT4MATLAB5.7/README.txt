@@ -8,16 +8,16 @@ qubit registers, etc. according to non-relativistic
 quantum mechanics and some novel ideas from quantum
 information theory.
 
-In particular, it contains MATLAB routines for 
-reordering qubits, for computing the reduced density 
-matrix after removing some of the qubits, for partial 
-transposition, etc. Most of the routines work also for 
-qudits. It also has routines for handling GHZ states, 
+In particular, it contains MATLAB routines for
+reordering qubits, for computing the reduced density
+matrix after removing some of the qubits, for partial
+transposition, etc. Most of the routines work also for
+qudits. It also has routines for handling GHZ states,
 cluster states, graph states, Dicke states, etc.
 
 Usage: Create a directory with the name QUBIT4MATLAB.
-Copy the routines into it. Then, using the "Set Path" 
-menu item of the "File" menu, setup MATLAB such 
+Copy the routines into it. Then, using the "Set Path"
+menu item of the "File" menu, setup MATLAB such
 that it looks for commands in this directory.
 
 If you use it for your research, please cite it as
@@ -34,20 +34,20 @@ For examples please see
          example2
          example3
 
-Guide book is available at  
+Guide book is available at
 
             http://dx.doi.org/10.1016/j.cpc.2008.03.007
             (only with subscription to CPC)
 
             http://uk.arxiv.org/abs/0709.0948
-         
+
             http://arxiv.org/abs/0709.0948
 
 Commands added after the version above:
 
-su2, BES_Breuer, maxppt, optwitness, example_maxppt, 
+su2, BES_Breuer, maxppt, optwitness, example_maxppt,
 example_optwitness + changes in proj_sym, proj_asym,
-smolinstate, schmidt, Fj, fisher, 
+smolinstate, schmidt, Fj, fisher,
 fisherwit_Dicke, fisherwit_spinsq,aop,nop,xop,pop,
 skewinf
 
@@ -56,7 +56,7 @@ Licence:
          bsd.txt
 
 Please send bug reports to
- 
+
          toth@alumni.nd.edu
 
 with the subject
@@ -139,12 +139,12 @@ swapquidts        added
 shiftquditsleft   added
 shiftquditsright  added
 reordervec        added
-reorder           more efficient with large state vectors 
+reorder           more efficient with large state vectors
                   (>10 qubits); can use sparse matrices;
                   does not use dec2base for counting but
                   uses a faster method.
 spreordermat      added
-keep              Before keep(rho,[1 2]) and keep(rho,[2 1]) 
+keep              Before keep(rho,[1 2]) and keep(rho,[2 1])
                   gave the same result. Now they give results
                   which are permutations of each other.
                   (qubit 1 and qubit 2 are exchanged)
@@ -165,17 +165,17 @@ mmstate           added
 mqubitop          removed: obsolete; use quditop and twoquditop
 
 U_CNOT            added
-U_H               added    
+U_H               added
 concurrence       added
 
 
 QUBIT4MATLAB V3.0  06 October 2007
-maxsymsep         bug in second part of search repaired 
+maxsymsep         bug in second part of search repaired
                   (it did not reach the maximum, just a value close to it)
 va                added
 contents          typos corrected
 smolinstate       added
-swapqudits        bug corrected; did not work correctly for qudits, 
+swapqudits        bug corrected; did not work correctly for qudits,
                   only for qubits
 addnoise          works also for qdits for d>2
 trnorm            added
@@ -226,10 +226,10 @@ example_optwitness added
 QUBIT4MATLAB v4.01 7 July 2009
 smolinstate        normalisation is corrected (state was not normalized to trace=1)
 optwitness         modified to work for slightly larger systems
-schmidt            slighly changed: before it gave back the _square_ of the 
+schmidt            slighly changed: before it gave back the _square_ of the
                    schmidt coefficients, no it gives back the
                    coefficients themselves
-changing from GPL to BSD license 
+changing from GPL to BSD license
 
 QUBIT4MATLAB v5.0  7 July 2014
 proj_sym           extended
@@ -245,12 +245,12 @@ nnchainp           Now works also for qudits not only for qubits.
 nnchain            Now works also for qudits not only for qubits.
 fisherwit_Dicke    added
 fisherwit_spinsq   added
-fisher             added 
+fisher             added
 skewinf            added
-aop                added 
-nop                added 
-xop                added 
-pop                added 
+aop                added
+nop                added
+xop                added
+pop                added
 
 QUBIT4MATLAB v5.2
 Fj                 even(k) is replaced by mod(k,2)
@@ -306,3 +306,34 @@ ising                 corrected (transverse field part of Hamiltonian had a bug)
 isingp                corrected (did not work for 2 qubits)
 spising               corrected (transverse field part of Hamiltonian had a bug)
 spisingp              corrected (did not work for 2 qubits)
+
+QUBIT4MATLAB v5.8
+concroof              added
+example_concroof      added
+ver_qubit4matlab      added instead of ver_2 or ver
+
+QUBIT4MATLAB v5.9
+ising_thermal         corrected (did not work for 2 qubits)
+ising_ground          corrected (did not work for 2 qubits)
+BES_CCNR4x4           added
+example_BES_CCNR4x4   added
+
+QUBIT4MATLAB v6.0
+wdistsquare_GMPC_ppt  added
+wdistsquare_GMPC      added
+wdistsquare_ppt       added
+wdistsquare           added
+wvar_GMPC_ppt         added
+wvar_GMPC             added
+wvar_ppt              added
+wvar                  added
+example_wdistsquare   added
+
+QUBIT4MATLAB v6.1
+wvar                  error corrected: TRANSPOSE_ON=1
+wdistsquare           error corrected: TRANSPOSE_ON=1
+wdistsquare_DPT_ppt   added (name changed from wdistsquare_ppt)
+wdistsquare_DPT       added (name changed from wdistsquare)
+wvar_DPT_ppt          added (name changed from wvar_ppt)
+wvar_DPT              added (name changed from wvar)
+All wdistsquare.., wvar.. commands work with several H matrices.
