@@ -22,7 +22,7 @@ i_plotit(1,5)
 
 function i_plotit(a,id)
     f2=0:0.15:pi;
-    f1=-pi:0.2:pi;
+    f1=-pi/2:0.2:pi/2;
     [X,Y]=meshgrid(f1,f2);
     Z=zeros(length(f2),length(f1));
     for k=1:length(f2)
@@ -36,17 +36,21 @@ function i_plotit(a,id)
             Z(k,l)=sqrt(probability(s,2,"1"));
         end
     end
-    subplot(3,2,id)
+    subplot(2,3,id+1)
     surface(X,Y,Z); 
     %view(3);
-    t=sprintf('Angle of 1st qubit, $\\phi_{1} = %g\\pi$',a);
-    title(t,'FontSize',15,...
-        'Interpreter','latex');
-    xlabel('Rotation angle of control gate \theta');
-    ylabel('\phi_{2}, angle of 2nd qubit');
-    zlabel('Amplitude of 2nd qubit |1>');
+
+    t=sprintf('Angle of 1st qubit, \\phi_{1} = %g\\pi',a);
+    title(t,'FontSize',15,'FontWeight','normal',...
+        'Interpreter','tex');
+
+    
+    xlabel('Rotation angle of CRY gate \theta','FontSize',15);
+    ylabel('Angle of 2nd qubit, \phi_{2}','FontSize',15);
+    %zlabel('Amplitude of 2nd qubit |1>','FontSize',15);
     xlim([min(X(:)) max(X(:))])
     ylim([min(Y(:)) max(Y(:))])
     c=colorbar;
     c.Label.String = 'Amplitude of 2nd qubit |1>';
+    c.Label.FontSize=15;
 end

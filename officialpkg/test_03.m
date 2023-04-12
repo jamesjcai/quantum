@@ -13,7 +13,7 @@ i_plot(0.75)
 
 function i_plot(a)
 
-x=0:0.05:pi;
+x=-pi/2:0.05:pi/2;
 y=x;
 for theta=0:0.25:1
         g = [ryGate(1,a*pi); ryGate(2,theta*pi)];
