@@ -2,7 +2,7 @@ import os
 localx=True
 if localx:
     # os.chdir("C:\\Users\\jcai\\Desktop\\sergio_test")
-    os.chdir("C:\\Users\\jcai.AUTH\\Documents\\GitHub\\quantum\\sergio_test")
+    os.chdir("d:\\GitHub\\quantum\\sergio_test")
 else:
     abspath = os.path.abspath(__file__)
     dname = os.path.dirname(abspath)

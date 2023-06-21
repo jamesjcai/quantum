@@ -11,7 +11,7 @@ end
 figure;
 plot(p,2*Theta);
 hold on
-% plot(p,asin(sqrt(p))*(2/pi),'x')
-plot(p,4*asin(sqrt(p))/pi)
+plot(p,asin(sqrt(p))*(2/pi),'x')
+%plot(p,4*asin(sqrt(p))/pi)
 xlabel('Expected P (% of expressed cells)')
 ylabel('Value of parameter \theta for RY gate')
