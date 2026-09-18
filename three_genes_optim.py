@@ -1,6 +1,7 @@
 from scipy.optimize import minimize
 
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit, Aer, execute
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 from numpy import pi
 from numpy.random import rand
 import numpy as np
@@ -41,8 +42,8 @@ def objective(x):
     circuit.measure(qreg_q[1], creg_c[1])
     circuit.measure(qreg_q[2], creg_c[2])
     shots=10000
-    backend = Aer.get_backend('qasm_simulator')
-    job=execute(circuit, backend, shots=shots, memory=False)
+    backend = AerSimulator()
+    job=backend.run(transpile(circuit, backend), shots=shots)
     result=job.result()
     counts=result.get_counts(circuit)
     #a=[]

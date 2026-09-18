@@ -1,5 +1,5 @@
 from qiskit import QuantumCircuit, QuantumRegister
-from qiskit.quantum_info.states import Statevector, partial_trace
+from qiskit.quantum_info import Statevector, partial_trace
 from qiskit.visualization import plot_state_city
 
 q0 = QuantumRegister(2, 'q0')

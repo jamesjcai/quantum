@@ -1,13 +1,15 @@
 #matplotlib inline
 # Importing standard Qiskit libraries and configuring account
-from qiskit import QuantumCircuit, execute, Aer, IBMQ, ClassicalRegister, QuantumRegister
-from qiskit.compiler import transpile, assemble
-from qiskit.tools.jupyter import *
+from qiskit import QuantumCircuit, transpile, ClassicalRegister, QuantumRegister
+from qiskit_aer import AerSimulator
 from qiskit.visualization import *
-from qiskit.quantum_info import Pauli, state_fidelity, basis_state, process_fidelity
+from qiskit.quantum_info import Pauli, state_fidelity, process_fidelity
 
-# Loading your IBM Q account(s)
-provider = IBMQ.load_account()
+# Hardware path (needs a configured IBM Quantum account; 'ibmq_ourense' is retired):
+#   from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2
+#   service = QiskitRuntimeService()
+#   backend = service.least_busy(operational=True, simulator=False)
+#   job = SamplerV2(mode=backend).run([transpile(qc, backend)], shots=shots)
 
 
 qc = QuantumCircuit(5, 5)
@@ -18,13 +20,11 @@ qc.h(3)
 qc.h(4)
 qc.measure([0, 1, 2, 3, 4], [0, 1, 2, 3, 4]) 
     
-# decide on a system and how many times to send the circuit
-backend = provider.get_backend('ibmq_ourense')
+# decide how many times to send the circuit
 shots = 1024
-job = execute(qc, backend, shots=shots, memory=True)
 
-simulator = Aer.get_backend('qasm_simulator')
-job = execute(qc, simulator, shots=shots, memory=True)
+simulator = AerSimulator()
+job = simulator.run(transpile(qc, simulator), shots=shots, memory=True)
 
 #we want to see results independently, instead of as a probability
 result = job.result()

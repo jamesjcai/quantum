@@ -7,8 +7,8 @@ from qiskit.visualization import plot_state_qsphere
 from qiskit.visualization import plot_state_city
 from qiskit.visualization import plot_state_paulivec
 from qiskit.visualization import plot_state_hinton
-from qiskit import ClassicalRegister, QuantumRegister, execute
-from qiskit import BasicAer
+from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 
 svZero  = Statevector.from_label('0') 
 svOne   = Statevector.from_label('1')  
@@ -50,8 +50,8 @@ qc = QuantumCircuit(q, c) # creates a quantum circuit
 qc.measure(q, c)
 qc.draw()
 
-backend = BasicAer.get_backend('qasm_simulator')
-job = execute(qc, backend, shots=1024)
+backend = AerSimulator()
+job = backend.run(transpile(qc, backend), shots=1024)
 job.result().get_counts(qc)
 
 
@@ -73,10 +73,8 @@ for qubit in range(3):
   qc.h(qubit)
 
 
-backend = Aer.get_backend('statevector_simulator')
-
 qc.draw('mpl').show()
-final_state = execute(qc,backend).result().get_statevector()
+final_state = Statevector(qc)
 
 print(final_state)
 

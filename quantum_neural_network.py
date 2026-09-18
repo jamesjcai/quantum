@@ -1,8 +1,8 @@
 
-from qiskit import QuantumCircuit, Aer, IBMQ, QuantumRegister, ClassicalRegister, execute
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
+from qiskit_aer import AerSimulator
 from sklearn import model_selection, datasets, svm
 import numpy as np
-import qiskit
 import copy
 import matplotlib.pyplot as plt
 
@@ -23,8 +23,8 @@ def feature_map(X):
 
 def variational_circuit(qc, theta):
     for i in range(N-1):
-        qc.cnot(i, i+1)
-    qc.cnot(N-1,0)
+        qc.cx(i, i+1)
+    qc.cx(N-1,0)
     for i in range(N):
         qc.ry(theta[i],i)
     return qc
@@ -34,15 +34,15 @@ def variational_circuit(qc, theta):
 def quantum_nn(X, theta, simulator=True):
     qc,c=feature_map(X)
 
-    qc=variational_circuit(qc,np.random.rand(N))
+    qc=variational_circuit(qc,theta)
     qc.measure(0,c)
-    shots=1E4
-    backend = Aer.get_backend('qasm_simulator')
+    shots=10000
+    backend = AerSimulator()
 
-    job=qiskit.execute(qc, backend, shots=shots)
+    job=backend.run(transpile(qc, backend), shots=shots)
     result=job.result()
     counts=result.get_counts(qc)
-    return counts['1']/shots
+    return counts.get('1',0)/shots
 
 def loss(prediction,target):
     return (prediction-target)**2
@@ -104,7 +104,7 @@ accuracy(X_test,Y_test,theta)
 
 clf = svm.SVC()
 clf.fit(X_train,Y_train)
-print(clf.prediction(X_test))
+print(clf.predict(X_test))
 print(Y_test)
 
 

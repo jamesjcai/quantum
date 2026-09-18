@@ -9,21 +9,19 @@ print(X_train[0])
 
 
 import numpy as np
-from qiskit import(
-  QuantumCircuit,
-  execute,
-  Aer)
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 
 # Use Aer's qasm_simulator
-simulator = Aer.get_backend('qasm_simulator')
+simulator = AerSimulator()
 
 # Create a Quantum Circuit acting on the q register
 n=4
 
 def feature_map(X):
 
-  circuit = QuantumCircuit(n, n)
+  circuit = QuantumCircuit(n, 1)
 
   for i, x in enumerate(X):
     circuit.rx(x,i)
@@ -33,21 +31,21 @@ def feature_map(X):
 def variational_circuit(qc, theta):
 
   for i in range(n-1):
-    qc.cnot(i,i+1)
-  qc.cnot(n-1,0)
+    qc.cx(i,i+1)
+  qc.cx(n-1,0)
   for i in range(n):
     qc.ry(theta[i],i)
   return qc
 
-def quantum_nn(X, theta, simulator=True)
-  qc, c = feature_map(X)
-  qc = variational_circuit(qc, np.random.rand(n))
-  qc.measure(0,c)
-  job = execute(qc, simulator, shots=1E4)
+def quantum_nn(X, theta, backend=simulator, shots=10000):
+  qc = feature_map(X)
+  qc = variational_circuit(qc, theta)
+  qc.measure(0,0)
+  job = backend.run(transpile(qc, backend), shots=shots)
   result = job.result()
   counts = result.get_counts(qc)
   #print("\nTotal count for 00 and 11 are:",counts)
-  return counts['1']/1E4
+  return counts.get('1',0)/shots
 
 quantum_nn(X_train[5], np.random.rand(n))
 
@@ -59,21 +57,4 @@ quantum_nn(X_train[5], np.random.rand(n))
 
 
 
-  import cirq
-
-  # Pick a qubit.
-  qubit = cirq.GridQubit(0, 0)
-
-  # Create a circuit
-  circuit = cirq.Circuit(
-      cirq.X(qubit)**0.5,  # Square root of NOT.
-      cirq.measure(qubit, key='m')  # Measurement.
-  )
-  print("Circuit:")
-  print(circuit)
-
-  # Simulate the circuit several times.
-  simulator = cirq.Simulator()
-  result = simulator.run(circuit, repetitions=20)
-  print("Results:")
-  print(result)
+# cirq version of the same example: see import_cirq.py

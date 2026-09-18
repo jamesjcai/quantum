@@ -1,10 +1,10 @@
 ## import the necessary tools for our work
 from IPython.display import clear_output
-from qiskit import *
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import numpy as np
 import matplotlib.pyplot as plotter
-from qiskit.tools.monitor import job_monitor
 # Visualisation settings
 import seaborn as sns, operator
 sns.set_style("dark")
@@ -38,13 +38,11 @@ def qpe_pre(circ_, n_qubits):
 
 def run_job(circ, backend, shots=1000, optimization_level=0):
     t_circ = transpile(circ, backend, optimization_level=optimization_level)
-    qobj = assemble(t_circ, shots=shots)
-    job = backend.run(qobj)
-    job_monitor(job)
+    job = backend.run(t_circ, shots=shots)
     return job.result().get_counts()
 
 
-simulator = Aer.get_backend('aer_simulator')
+simulator = AerSimulator()
 
 def get_pi_estimate(n_qubits):
     # create the circuit

@@ -9,7 +9,7 @@ for k=1:length(Theta)
 end
 
 figure;
-plot(p,2*Theta);
+plot(p,Theta);
 hold on
 plot(p,asin(sqrt(p))*(2/pi),'x')
 %plot(p,4*asin(sqrt(p))/pi)

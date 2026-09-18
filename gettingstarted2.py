@@ -1,5 +1,6 @@
 import numpy as np
-from qiskit import QuantumCircuit, execute, Aer
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 from qiskit import QuantumRegister, ClassicalRegister
 
@@ -14,8 +15,8 @@ circuit.measure(qreg_q[0], creg_c[0])
 circuit.measure(qreg_q[1], creg_c[1])
 circuit.measure(qreg_q[2], creg_c[2])
 
-simulator = Aer.get_backend('qasm_simulator')
-job = execute(circuit, simulator, shots=1000)
+simulator = AerSimulator()
+job = simulator.run(transpile(circuit, simulator), shots=1000)
 result = job.result()
 counts = result.get_counts(circuit)
 print("\nTotal count for 00 and 11 are:",counts)
